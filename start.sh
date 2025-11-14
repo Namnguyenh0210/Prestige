@@ -55,95 +55,61 @@ fi
 # Kiem tra npm
 if command -v npm &> /dev/null; then
     NPM_VERSION=$(npm -v)
-    echo "✅ npm da cai dat: v$NPM_VERSION"
+    echo "✅ NPM da cai dat: $NPM_VERSION"
 else
     echo "❌ NPM CHUA CAI DAT!"
     exit 1
 fi
 
 echo ""
-echo "✅ Tat ca yeu cau he thong da duoc dam bao!"
+echo "✅ Tat ca yeu cau da duoc kiem tra!"
 echo ""
 
 # ===================================================================
-# BUOC 1.5: KILL PROCESS CU DANG DUNG PORT
+# BUOC 2: SETUP BACKEND
 # ===================================================================
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║   KIEM TRA VA DUNG PROCESS CU                            ║"
-echo "╚══════════════════════════════════════════════════════════╝"
-echo ""
-
-# Kill process dang dung port 8080 (Backend)
-echo "🔍 Kiem tra port 8080 (Backend)..."
-BACKEND_PID=$(lsof -ti:8080)
-if [ ! -z "$BACKEND_PID" ]; then
-    echo "⚠️  Port 8080 dang duoc su dung boi process PID: $BACKEND_PID"
-    echo "🛑 Dang dung process cu..."
-    kill -9 $BACKEND_PID 2>/dev/null
-    sleep 1
-    echo "✅ Da dung process Backend cu"
-else
-    echo "✅ Port 8080 trong"
-fi
-
-echo ""
-
-# Kill process dang dung port 5173 (Frontend)
-echo "🔍 Kiem tra port 5173 (Frontend)..."
-FRONTEND_PID=$(lsof -ti:5173)
-if [ ! -z "$FRONTEND_PID" ]; then
-    echo "⚠️  Port 5173 dang duoc su dung boi process PID: $FRONTEND_PID"
-    echo "🛑 Dang dung process cu..."
-    kill -9 $FRONTEND_PID 2>/dev/null
-    sleep 1
-    echo "✅ Da dung process Frontend cu"
-else
-    echo "✅ Port 5173 trong"
-fi
-
-echo ""
-
-# ===================================================================
-# BUOC 2: CAI DAT BACKEND
-# ===================================================================
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║   BUOC 2: CAI DAT BACKEND (Spring Boot + Maven)          ║"
-echo "╚══════════════════════════════════════════════════════════╝"
+echo "📦 Buoc 2: Setup Backend (Spring Boot)..."
 echo ""
 
 cd "$BACKEND_DIR"
 
-echo "📦 Dang cai dat dependencies cho Backend..."
-mvn clean install -DskipTests
+if [ -f "pom.xml" ]; then
+    echo "🔨 Dang build Backend voi Maven..."
+    mvn clean install -DskipTests
 
-if [ $? -eq 0 ]; then
-    echo "✅ Backend dependencies da duoc cai dat thanh cong!"
+    if [ $? -eq 0 ]; then
+        echo "✅ Backend build thanh cong!"
+    else
+        echo "❌ Backend build that bai!"
+        exit 1
+    fi
 else
-    echo "❌ Loi khi cai dat Backend!"
-    echo "   Vui long kiem tra file pom.xml hoac ket noi internet"
+    echo "❌ Khong tim thay pom.xml trong $BACKEND_DIR"
     exit 1
 fi
 
 echo ""
 
 # ===================================================================
-# BUOC 3: CAI DAT FRONTEND
+# BUOC 3: SETUP FRONTEND
 # ===================================================================
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║   BUOC 3: CAI DAT FRONTEND (Vue 3 + npm)                 ║"
-echo "╚══════════════════════════════════════════════════════════╝"
+echo "📦 Buoc 3: Setup Frontend (Vue 3 + Vite)..."
 echo ""
 
 cd "$FRONTEND_DIR"
 
-echo "📦 Dang cai dat dependencies cho Frontend..."
-npm install
+if [ -f "package.json" ]; then
+    echo "🔨 Dang cai dat dependencies..."
+    npm install
 
-if [ $? -eq 0 ]; then
-    echo "✅ Frontend dependencies da duoc cai dat thanh cong!"
+    if [ $? -eq 0 ]; then
+        echo "✅ Frontend dependencies da cai dat!"
+    else
+        echo "❌ Frontend setup that bai!"
+        exit 1
+    fi
 else
-    echo "❌ Loi khi cai dat Frontend!"
-    echo "   Vui long kiem tra file package.json hoac ket noi internet"
+    echo "❌ Khong tim thay package.json trong $FRONTEND_DIR"
     exit 1
 fi
 
@@ -153,81 +119,26 @@ echo ""
 # BUOC 4: CHAY BACKEND & FRONTEND
 # ===================================================================
 echo "╔══════════════════════════════════════════════════════════╗"
-echo "║   BUOC 4: CHAY BACKEND + FRONTEND                        ║"
+echo "║   STARTING BACKEND & FRONTEND                            ║"
+echo "║   Backend: http://localhost:8080/api                     ║"
+echo "║   Frontend: http://localhost:5173                        ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 echo ""
-
-# Tao log directory
-mkdir -p "$SCRIPT_DIR/logs"
 
 # Chay Backend trong background
-echo "🚀 Dang khoi dong Backend..."
 cd "$BACKEND_DIR"
-mvn spring-boot:run > "$SCRIPT_DIR/logs/backend.log" 2>&1 &
+echo "🚀 Dang khoi dong Backend..."
+mvn spring-boot:run &
 BACKEND_PID=$!
-echo "   Backend PID: $BACKEND_PID"
-echo "   Log file: logs/backend.log"
 
-# Doi 15 giay de Backend khoi dong
-echo ""
-echo "⏳ Doi Backend khoi dong (15 giay)..."
-sleep 15
+# Cho Backend startup
+sleep 10
 
-# Kiem tra Backend co chay khong
-if ps -p $BACKEND_PID > /dev/null; then
-    echo "✅ Backend dang chay tai: http://localhost:8080/api"
-else
-    echo "❌ Backend khong khoi dong duoc!"
-    echo "   Vui long kiem tra logs/backend.log de xem chi tiet loi"
-    exit 1
-fi
-
-echo ""
-
-# Chay Frontend trong background
-echo "🚀 Dang khoi dong Frontend..."
+# Chay Frontend
 cd "$FRONTEND_DIR"
-npm run dev > "$SCRIPT_DIR/logs/frontend.log" 2>&1 &
-FRONTEND_PID=$!
-echo "   Frontend PID: $FRONTEND_PID"
-echo "   Log file: logs/frontend.log"
+echo "🚀 Dang khoi dong Frontend..."
+npm run dev
 
-# Doi 5 giay de Frontend khoi dong
-echo ""
-echo "⏳ Doi Frontend khoi dong (5 giay)..."
-sleep 5
+# Cleanup khi thoat
+trap "kill $BACKEND_PID" EXIT
 
-# Kiem tra Frontend co chay khong
-if ps -p $FRONTEND_PID > /dev/null; then
-    echo "✅ Frontend dang chay tai: http://localhost:5173"
-else
-    echo "❌ Frontend khong khoi dong duoc!"
-    echo "   Vui long kiem tra logs/frontend.log de xem chi tiet loi"
-    exit 1
-fi
-
-echo ""
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║   🎉 THANH CONG! CA 2 SERVICE DANG CHAY                  ║"
-echo "╚══════════════════════════════════════════════════════════╝"
-echo ""
-echo "📍 Backend API:  http://localhost:8080/api"
-echo "📍 Frontend Web: http://localhost:5173"
-echo ""
-echo "📋 Log files:"
-echo "   - Backend:  logs/backend.log"
-echo "   - Frontend: logs/frontend.log"
-echo ""
-echo "🛑 De dung ca 2 service, chay lenh:"
-echo "   ./stop.sh"
-echo ""
-echo "💡 Hoac nhan Ctrl+C 2 lan de dung"
-echo ""
-
-# Luu PID vao file de script stop co the dung
-echo "$BACKEND_PID" > "$SCRIPT_DIR/logs/backend.pid"
-echo "$FRONTEND_PID" > "$SCRIPT_DIR/logs/frontend.pid"
-
-# Giu script chay de khong bi tat
-echo "⏸️  Script dang chay... (Nhan Ctrl+C de dung)"
-wait
