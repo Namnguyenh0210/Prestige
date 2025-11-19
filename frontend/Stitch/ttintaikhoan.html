@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>User Account - Luxury Fashion</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Manrope', sans-serif;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Playfair Display', serif;
+            }
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#D5BFA3",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#1d1a15",
+                        "primary-text": "#111111",
+                        "secondary-text": "#7e766d",
+                        "secondary": "#CFCFCF",
+                        "cta": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary-text">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <div class="flex flex-1">
+            <aside class="w-64 flex-shrink-0 border-r border-secondary/50 p-6 hidden md:block">
+                <div class="flex flex-col gap-8">
+                    <h2 class="text-primary-text text-xl font-heading font-bold">My Account</h2>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2">
+                            <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 group" href="#">
+                                <span class="material-symbols-outlined text-primary-text group-hover:text-cta" style="font-size: 20px;">person</span>
+                                <p class="text-primary-text text-sm font-medium leading-normal group-hover:text-cta">Account Information</p>
+                            </a>
+                            <a class="flex items-center gap-3 px-3 py-2 rounded-lg group" href="#">
+                                <span class="material-symbols-outlined text-primary-text group-hover:text-cta" style="font-size: 20px;">receipt_long</span>
+                                <p class="text-primary-text text-sm font-medium leading-normal group-hover:text-cta">Order History</p>
+                            </a>
+                            <a class="flex items-center gap-3 px-3 py-2 rounded-lg group" href="#">
+                                <span class="material-symbols-outlined text-primary-text group-hover:text-cta" style="font-size: 20px;">home_pin</span>
+                                <p class="text-primary-text text-sm font-medium leading-normal group-hover:text-cta">Address Book</p>
+                            </a>
+                        </div>
+                    </div>
+                    <a class="flex items-center gap-3 px-3 py-2 mt-auto rounded-lg group" href="#">
+                        <span class="material-symbols-outlined text-primary-text group-hover:text-cta" style="font-size: 20px;">logout</span>
+                        <p class="text-primary-text text-sm font-medium leading-normal group-hover:text-cta">Logout</p>
+                    </a>
+                </div>
+            </aside>
+            <main class="flex-1 p-6 md:p-10 lg:p-16">
+                <div class="layout-content-container flex flex-col max-w-4xl mx-auto w-full">
+                    <!-- Page Heading -->
+                    <div class="flex flex-wrap justify-between gap-3 mb-8">
+                        <h1 class="text-primary-text text-4xl lg:text-5xl font-heading font-bold leading-tight">Account Information</h1>
+                    </div>
+                    <!-- Profile Section -->
+                    <section class="mb-12">
+                        <h2 class="text-primary-text text-2xl font-heading font-bold leading-tight mb-6">Personal Information</h2>
+                        <div class="flex p-4 @container border border-secondary/50 rounded-lg">
+                            <div class="flex w-full flex-col gap-6 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+                                <div class="flex gap-6 items-center">
+                                    <div class="relative">
+                                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPbWZ3fDXdgZ15gbG4tt-fakoepaDRbwEt6-b94gEjqG-ZsOhuzYjbb_c6wnQSwsauaIflUP67d_w6jp4Ndms1WCf79J_6t0moAnt1s4lnbhvmcXB-Yo9J1E9hpreTHNFl2RWeATWzvanKaYaFBJ_v0RrLuK7M4wcZQBVYZkEaV_H5EGlQjZyV72zZDno2Rlf4Exr_4Owyc8oAeDuXmhsNxWoHONYuXoq39NpEDjl1xmc9cTPLh_eUWh947FExYuJZaSyXrXZtKUg");'></div>
+                                        <button class="absolute bottom-0 right-0 flex items-center justify-center size-8 bg-white dark:bg-cta border border-secondary/50 rounded-full text-primary-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                            <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-primary-text text-xl font-bold leading-tight">Elara Vance</p>
+                                        <p class="text-secondary-text text-base font-normal leading-normal">elara.vance@email.com</p>
+                                    </div>
+                                </div>
+                                <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-cta text-white text-sm font-bold leading-normal tracking-wide w-full max-w-[480px] @[480px]:w-auto hover:bg-opacity-90 transition-colors">
+                                    <span class="truncate">Save Changes</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-1 md:grid-cols-[25%_1fr_auto] gap-x-6 items-center">
+                            <div class="col-span-full grid grid-cols-subgrid border-t border-secondary/50 py-5">
+                                <p class="text-secondary-text text-sm font-normal leading-normal">Phone Number</p>
+                                <p class="text-primary-text text-sm font-normal leading-normal">+1 (555) 123-4567</p>
+                                <a class="text-cta text-sm font-bold justify-self-end hidden md:block" href="#">Edit</a>
+                            </div>
+                            <div class="col-span-full grid grid-cols-subgrid border-t border-secondary/50 py-5">
+                                <p class="text-secondary-text text-sm font-normal leading-normal">Password</p>
+                                <p class="text-primary-text text-sm font-normal leading-normal">••••••••</p>
+                                <a class="text-cta text-sm font-bold justify-self-end hidden md:block" href="#">Change Password</a>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Address Section -->
+                    <section class="mb-12">
+                        <h2 class="text-primary-text text-2xl font-heading font-bold leading-tight mb-6">Address Information</h2>
+                        <div class="border border-secondary/50 rounded-lg p-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-primary-text mb-1">Default Address</h3>
+                                    <p class="text-secondary-text text-sm">2468 Elegance Avenue, Suite 101<br/>Metropolis, NY 10001<br/>United States</p>
+                                </div>
+                                <a class="text-cta text-sm font-bold" href="#">Manage Addresses</a>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Account Details Section -->
+                    <section class="mb-12">
+                        <h2 class="text-primary-text text-2xl font-heading font-bold leading-tight mb-6">Account Details</h2>
+                        <div class="p-4 grid grid-cols-1 md:grid-cols-[25%_1fr] gap-x-6 border-t border-secondary/50">
+                            <div class="col-span-full grid grid-cols-subgrid py-5">
+                                <p class="text-secondary-text text-sm font-normal leading-normal">Account Creation Date</p>
+                                <p class="text-primary-text text-sm font-normal leading-normal">12 August 2022</p>
+                            </div>
+                            <div class="col-span-full grid grid-cols-subgrid border-t border-secondary/50 py-5">
+                                <p class="text-secondary-text text-sm font-normal leading-normal">Account Status</p>
+                                <p class="text-primary-text text-sm font-normal leading-normal">Active</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Order Tracking Section -->
+                    <section>
+                        <h2 class="text-primary-text text-2xl font-heading font-bold leading-tight mb-6">Theo dõi đơn hàng</h2>
+                        <div class="flex flex-col gap-4">
+                            <!-- Order Item -->
+                            <details class="group border border-secondary/50 rounded-lg overflow-hidden">
+                                <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-primary/10 transition-colors">
+                                    <div class="flex flex-col md:flex-row md:items-center md:gap-8 gap-1">
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Order ID</p>
+                                            <p class="font-semibold text-primary-text text-sm">#FASH2024-001</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Date</p>
+                                            <p class="font-semibold text-primary-text text-sm">Oct 28, 2023</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Total</p>
+                                            <p class="font-semibold text-primary-text text-sm">$1,250.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">Delivered</span>
+                                        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                                    </div>
+                                </summary>
+                                <div class="bg-white dark:bg-background-dark border-t border-secondary/50 p-6">
+                                    <div class="flex items-start gap-6 mb-6">
+                                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md w-24 h-24" data-alt="Elegant beige trench coat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvuTimCbpxN4xoZz93gFWy4XVSi7Eer_vfYHP0Cj9Bo3i_Yna2lA4DBRKP37UmvjrE4UUlxPVqCFkXMgO8Sd33u-mfeoBNSPjjuKpA6yIIrxJ5HRuF_nHyShmnUqvvvqRxwpwkLipqShef6yCdEemaVvLIkmx0QLPPoLLvGFI7kgkHDwavhKl5lfxPSyt2Q7RC9eu1wuy_DgL6Wrm6DAIVrRrbfx3jaidOfQ6xUghtLsKZdrU0izdaa7gJpihrjEoGowDuxHrSqS4");'></div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-text">The Classic Trench Coat</h4>
+                                            <p class="text-secondary-text text-sm">Color: Beige, Size: M</p>
+                                            <p class="text-secondary-text text-sm">Qty: 1</p>
+                                            <p class="font-semibold text-primary-text mt-2">$1,250.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="border-t border-secondary/50 pt-4">
+                                        <a class="text-cta text-sm font-bold flex items-center gap-2" href="#">
+                                            <span>Track Shipment</span>
+                                            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </details>
+                            <!-- Order Item -->
+                            <details class="group border border-secondary/50 rounded-lg overflow-hidden">
+                                <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-primary/10 transition-colors">
+                                    <div class="flex flex-col md:flex-row md:items-center md:gap-8 gap-1">
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Order ID</p>
+                                            <p class="font-semibold text-primary-text text-sm">#FASH2023-789</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Date</p>
+                                            <p class="font-semibold text-primary-text text-sm">Jul 15, 2023</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-secondary-text text-xs">Total</p>
+                                            <p class="font-semibold text-primary-text text-sm">$890.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">Delivered</span>
+                                        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                                    </div>
+                                </summary>
+                                <div class="bg-white dark:bg-background-dark border-t border-secondary/50 p-6">
+                                    <div class="flex items-start gap-6 mb-6">
+                                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md w-24 h-24" data-alt="Black leather handbag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfM8LPTVo4EhaFJnKC5Dm89x6LmJB6DktbbvvTwWn_OcsjlkUpXQxjWx_2wTOLVhTAUgjRuW6OxaNMfKIeXr77rhQRLr_ZP_ibhnYkLW6LZhi6whIlrzjNV5fRj5S7rt2pkbJxzY_dfCK2KZx6EQ70M8saLD7ZZqpYLJf7xtHe_UQnewmmfcybNSLhjbkPTEW8WnGulhdLJWS4fXEuER0fdgFMGJfkZWGmX8S-qKuqSbFl9JGuHzRPz_NcCTIMuvkfzrHO4uykIPg");'></div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-text">The Signature Handbag</h4>
+                                            <p class="text-secondary-text text-sm">Color: Black</p>
+                                            <p class="text-secondary-text text-sm">Qty: 1</p>
+                                            <p class="font-semibold text-primary-text mt-2">$620.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-6 mb-6">
+                                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md w-24 h-24" data-alt="Silk scarf with floral pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVTnEaAofBPWbqb9Ap9Qdc8VhFrSAWqb6w7ZUc8_63GAFFFOyKQOdsZpm22afbeOJ5qaCY4l3kBW7InwlNqYApe1t1U0Wef47XnecFPgroG_xTce0_PxChTud9c_8MsV4zd4P73i2QbAC3SxfjNFM45X-HzOZXq7INmsnYOUFppnuK4iWOvRMqS3CAOqNMce-C7uaiq42NuTaS7nCOql-jZkOxpYAzRhlOPaSUtZwy70DeUeCeUP89ThNuqgkc0ILbIEwtVjO1h4M");'></div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-text">Floral Silk Scarf</h4>
+                                            <p class="text-secondary-text text-sm">Color: Rose Petal</p>
+                                            <p class="text-secondary-text text-sm">Qty: 1</p>
+                                            <p class="font-semibold text-primary-text mt-2">$270.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="border-t border-secondary/50 pt-4">
+                                        <a class="text-cta text-sm font-bold flex items-center gap-2" href="#">
+                                            <span>Track Shipment</span>
+                                            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+</body></html>

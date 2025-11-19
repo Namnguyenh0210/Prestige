@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LUXE FASHION Blog</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#111111",
+                        "primary-text": "#111111",
+                        "accent": "#D5BFA3",
+                        "secondary": "#CFCFCF",
+                        "hover": "#000000",
+                        "meta-text": "#757575",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary-text dark:text-background-light">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- TopNavBar Component -->
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-secondary/50 px-4 sm:px-10 lg:px-20 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+            <div class="flex items-center gap-4 text-primary-text dark:text-background-light">
+                <div class="size-6 text-primary-text dark:text-accent">
+                    <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6_319)">
+                            <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"></path>
+                        </g>
+                        <defs>
+                            <clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight">LUXE FASHION</h2>
+            </div>
+            <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                <a class="text-sm font-medium hover:text-hover dark:hover:text-accent transition-colors" href="#">New Arrivals</a>
+                <a class="text-sm font-medium hover:text-hover dark:hover:text-accent transition-colors" href="#">Collections</a>
+                <a class="text-sm font-medium text-hover dark:text-accent underline underline-offset-4" href="#">Blog</a>
+                <a class="text-sm font-medium hover:text-hover dark:hover:text-accent transition-colors" href="#">About</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-primary/10 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-2xl">search</span>
+                </button>
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-primary/10 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-2xl">person</span>
+                </button>
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-primary/10 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-2xl">shopping_bag</span>
+                </button>
+            </div>
+        </header>
+        <main class="flex flex-1 justify-center py-5 sm:py-10">
+            <div class="layout-content-container flex flex-col w-full max-w-5xl flex-1 px-4 sm:px-6 lg:px-8">
+                <!-- Breadcrumbs Component -->
+                <div class="flex flex-wrap gap-2 px-4 py-4">
+                    <a class="text-meta-text dark:text-secondary text-sm font-medium hover:text-hover dark:hover:text-accent" href="#">Home</a>
+                    <span class="text-meta-text dark:text-secondary text-sm font-medium">/</span>
+                    <a class="text-meta-text dark:text-secondary text-sm font-medium hover:text-hover dark:hover:text-accent" href="#">Blog</a>
+                    <span class="text-meta-text dark:text-secondary text-sm font-medium">/</span>
+                    <span class="text-primary-text dark:text-background-light text-sm font-medium">The Art of Modern Tailoring</span>
+                </div>
+                <!-- HeaderImage Component -->
+                <div class="w-full h-64 sm:h-80 md:h-[450px] bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden" data-alt="A model wearing a finely tailored modern suit, standing against a minimalist architectural background." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPo4fxgPssuwrVyRuAAbnD2ZleHpzBkFxODnYCuSa6o3JjsYWafPp81xP5cJXhuRn5hPLRPaFJTQZ1Fm478zAC6x8RK5KrQVuTei-iclMyh3t6BX9095lcSOCPwsQgR7LKxEO2L6u2wON6x3JMTC04AYb3rGRAAHqTDYL56VH6eFhi1Ys8ZtKcnmxtY-qA8grkWaKQ1xfaKsL7a7oJ_oYwaymK_eRcMcf9yz_OPIuKsuHUYj1lhIV8j9g_tGdRVzgOAb5pdFV5X08");'></div>
+                <div class="max-w-3xl mx-auto w-full">
+                    <!-- HeadlineText & MetaText Components -->
+                    <div class="text-center mt-8 sm:mt-12">
+                        <a class="inline-block bg-accent/20 text-accent-darker dark:bg-accent/30 dark:text-accent py-1 px-3 rounded-full text-xs font-bold uppercase tracking-wider mb-4 hover:bg-accent/40 transition-colors" href="#">Trends</a>
+                        <h1 class="text-primary-text dark:text-background-light font-serif tracking-tight text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">The Art of Modern Tailoring: A Deep Dive into SS24 Trends</h1>
+                        <p class="text-meta-text dark:text-secondary text-sm font-normal leading-normal pt-4">By Audrey Hepburn | Published on August 15, 2024 | 5 min read</p>
+                    </div>
+                    <!-- Article Body -->
+                    <article class="prose prose-lg dark:prose-invert max-w-none mx-auto pt-8 sm:pt-12 pb-12 text-primary-text dark:text-background-light" style="line-height: 1.75;">
+                        <p>In the ever-evolving landscape of fashion, tailoring remains a timeless art form. The Spring/Summer 2024 season marks a significant shift, moving beyond the traditional confines of suiting to embrace a more fluid, expressive, and versatile approach. This season is not just about impeccably cut blazers and trousers; it's about redefining what power dressing means in a modern context.</p>
+                        <p>Designers are exploring deconstructed silhouettes, unexpected fabric combinations, and a softer, more relaxed aesthetic. We're seeing oversized blazers paired with flowing skirts, sharp-shouldered jackets in pastel hues, and trousers that range from wide-leg culottes to slim, cropped styles. The focus is on personal expression and comfort without sacrificing an ounce of sophistication.</p>
+                        <blockquote class="border-l-4 border-accent pl-6 italic text-primary-text/80 dark:text-background-light/80 my-8">
+                            "Fashion is not something that exists in dresses only. Fashion is in the sky, in the street, fashion has to do with ideas, the way we live, what is happening."
+                            <cite class="block not-italic mt-2 text-sm text-meta-text dark:text-secondary">— Coco Chanel</cite>
+                        </blockquote>
+                        <figure class="my-10">
+                            <img class="w-full h-auto object-cover rounded-lg" data-alt="Close up detail of a luxury watch on a mannequin's wrist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBodyqgXUFcwQ1gTIX04uzRqgLpU5EogztKo-qUTJ-55JskmMs0sZWxCKQF2iK6Pe8DJa2J3fBG5caDQakYPDZrb4jOCcMj7OEY4Bp_5deagWbhiRTb9OAcslp7ZKG-dEG290BH8G9nS9mSdl6KmRkliCCYYyaG8FyiQwzHPNvlpqUx2VTbNwdTroBwl7XPunLnmDN-SEEf3QNUtuLx1SrLNSSNe17xk-8nUWSJvki0Cx1vyWttkP7c5rlrdG4SBgta-zKtwYKr8S0"/>
+                            <figcaption class="text-center text-sm text-meta-text dark:text-secondary mt-2">Precision in every detail: The SS24 collections emphasize craftsmanship and subtle luxury.</figcaption>
+                        </figure>
+                        <h3 class="font-serif text-2xl font-bold mt-12 mb-4">The New Palette: Earthy Neutrals and Bold Accents</h3>
+                        <p>While classic navy, charcoal, and black remain staples, SS24 introduces a palette inspired by nature. Think sandy beiges, olive greens, and terracotta, often punctuated with a surprising pop of color like cerulean blue or vibrant coral. This blend of earthy tones and bold accents creates a look that is both grounded and exciting, perfect for transitioning from the boardroom to a social evening.</p>
+                        <!-- Social Share Section -->
+                        <div class="flex items-center justify-center gap-4 mt-12 py-6 border-t border-b border-secondary/50">
+                            <span class="text-sm font-bold uppercase tracking-wider text-meta-text dark:text-secondary">Share:</span>
+                            <a class="text-primary-text dark:text-background-light hover:text-hover dark:hover:text-accent transition-colors" href="#"><svg class="feather feather-twitter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                            <a class="text-primary-text dark:text-background-light hover:text-hover dark:hover:text-accent transition-colors" href="#"><svg class="feather feather-facebook" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                            <a class="text-primary-text dark:text-background-light hover:text-hover dark:hover:text-accent transition-colors" href="#"><svg class="feather feather-linkedin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                            <a class="text-primary-text dark:text-background-light hover:text-hover dark:hover:text-accent transition-colors" href="#"><svg class="feather feather-link" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg></a>
+                        </div>
+                    </article>
+                </div>
+                <!-- Related Posts Section -->
+                <div class="w-full pt-12 sm:pt-16 pb-12">
+                    <h2 class="text-center font-serif text-3xl font-bold text-primary-text dark:text-background-light mb-8 sm:mb-12">Bài viết blog liên quan</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Related Post Card 1 -->
+                        <div class="flex flex-col group">
+                            <a class="block overflow-hidden" href="#">
+                                <div class="w-full h-56 bg-center bg-cover transition-transform duration-300 group-hover:scale-105" data-alt="A model in a chic trench coat walking down a Parisian street." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBPWIXJNkvgY8Vg6AkMcn2UquxqmcFO3WDXZ4YoJxKnZEL86qd7GfHj-wFUmHU-KsqutlumzRujYW6KYQAyHx3EtoAtvg4ga3qH5hWI1GyCfEt2XkqJm70ONKcu98B4jSLFxirb98fZvNLSAbSsVgBDOlL70LgxuLUQe_wXwmg1KrWALYFBkz9H1hAX00TLEcY1D4omtEmKqqOnX21hq-22M-mibnW_LvnwKwuBMzOsFbVR3AdNHD6a5HfgatH_DJqyi76XT3u1MI');"></div>
+                            </a>
+                            <div class="pt-4">
+                                <h3 class="font-serif text-xl font-bold mb-2 text-primary-text dark:text-background-light"><a class="hover:underline underline-offset-4 decoration-accent" href="#">The Timeless Appeal of the Trench Coat</a></h3>
+                                <p class="text-sm text-meta-text dark:text-secondary">Discover why this classic piece remains a wardrobe staple season after season.</p>
+                            </div>
+                        </div>
+                        <!-- Related Post Card 2 -->
+                        <div class="flex flex-col group">
+                            <a class="block overflow-hidden" href="#">
+                                <div class="w-full h-56 bg-center bg-cover transition-transform duration-300 group-hover:scale-105" data-alt="A collection of luxury leather handbags displayed in a boutique." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2WWfp3z0984vzmsG65tqPWIVch-fXAbAWbvDIS8gITpCw8YK-2wbubstsXy_F9OpUPLc9Jb38NnOz4OzUJDbAtgMblcCYef0pDn6U41ttx9LwWCyp-W3hcFlFGCYzgnzxs_mDEiqlqPtro6i-QpWs6gUmYPz-sIIO2bzAcwVOfv0BLF6RQd2b5hyRfUHxBpnlWV6XCnMJrltc4NTOWVOc7-6YiLtZ6xuNdEfhxrlesOgv9NwrQzV8XnoNM98X4K0c-nY8gmS0Suk');"></div>
+                            </a>
+                            <div class="pt-4">
+                                <h3 class="font-serif text-xl font-bold mb-2 text-primary-text dark:text-background-light"><a class="hover:underline underline-offset-4 decoration-accent" href="#">Investment Pieces: The Handbags to Buy Now</a></h3>
+                                <p class="text-sm text-meta-text dark:text-secondary">Our curated guide to the most coveted designer bags of the year.</p>
+                            </div>
+                        </div>
+                        <!-- Related Post Card 3 -->
+                        <div class="flex flex-col group">
+                            <a class="block overflow-hidden" href="#">
+                                <div class="w-full h-56 bg-center bg-cover transition-transform duration-300 group-hover:scale-105" data-alt="A woman applying elegant, minimalist makeup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMMNJqDJHHwzD-fKHHpX72l0P7OlgUxLi3nmtHo6kzNnOg_SKDLoJ77B8nig_3avwAv9f0GIIhwBBP2tVCFZLtGcb6Wvl8Vv1cwGu5p8EZQqMHKCn-jPIqn0yj7XqHtfxNwAdaLaLvRo8AjDW1vg_O53QM8kabVf7IbfYCIvxm0vIIfvZ2zHUQiQCJA6tbZA31xtbe-iNempBVSmciOg3OGChW14WlIjkqezUffbka1Coce4tEChdsIg88ZkOp4QR9HklAKnqQqyE');"></div>
+                            </a>
+                            <div class="pt-4">
+                                <h3 class="font-serif text-xl font-bold mb-2 text-primary-text dark:text-background-light"><a class="hover:underline underline-offset-4 decoration-accent" href="#">Minimalist Beauty: Less is More</a></h3>
+                                <p class="text-sm text-meta-text dark:text-secondary">Achieve a polished and sophisticated look with these essential beauty tips.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-primary text-background-light dark:bg-black dark:text-background-light">
+            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider">Customer Service</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Contact Us</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Shipping &amp; Returns</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">FAQ</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Size Guide</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider">About Luxe</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Our Story</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Careers</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Press</a></li>
+                            <li><a class="text-sm text-gray-300 hover:text-white" href="#">Sustainability</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2 md:col-span-2">
+                        <h3 class="text-sm font-bold uppercase tracking-wider">Join Our Newsletter</h3>
+                        <p class="mt-4 text-sm text-gray-300">Receive exclusive updates on new arrivals, special offers, and style inspiration.</p>
+                        <form class="mt-4 flex w-full max-w-sm">
+                            <input class="flex-grow bg-white/10 border-gray-500 rounded-l-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter your email" type="email"/>
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-md font-bold hover:bg-accent/80 transition-colors" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
+                    <p class="text-sm text-gray-400">© 2024 LUXE FASHION. All Rights Reserved.</p>
+                    <div class="flex space-x-6 mt-4 sm:mt-0">
+                        <a class="text-gray-400 hover:text-white" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+                        <a class="text-gray-400 hover:text-white" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 4.25a.872.872 0 10-1.744 0 .872.872 0 001.744 0zm2.325 0a.872.872 0 10-1.744 0 .872.872 0 001.744 0zM12 6.848a5.152 5.152 0 100 10.304 5.152 5.152 0 000-10.304zm0 1.744a3.408 3.408 0 110 6.816 3.408 3.408 0 010-6.816z" fill-rule="evenodd"></path></svg></a>
+                        <a class="text-gray-400 hover:text-white" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+</body></html>

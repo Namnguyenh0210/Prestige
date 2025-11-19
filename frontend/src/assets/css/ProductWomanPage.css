@@ -1,0 +1,20 @@
+/* Custom range slider styles */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #111111;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #FAFAFA;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #111111;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #FAFAFA;
+}

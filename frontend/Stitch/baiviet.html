@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LUXE - Fashion Blog</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d5c0a4",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#1d1a15",
+                        "text-primary-light": "#111111",
+                        "text-primary-dark": "#f7f7f6",
+                        "text-secondary-light": "#6b7280",
+                        "text-secondary-dark": "#9ca3af",
+                        "border-light": "#CFCFCF",
+                        "border-dark": "#374151",
+                        "cta-hover": "#000000"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                    'FILL' 0,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- TopNavBar -->
+        <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 md:px-10 lg:px-20 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+            <div class="flex items-center gap-4">
+                <div class="size-6 text-text-primary-light dark:text-text-primary-dark">
+                    <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                <h2 class="font-serif text-2xl font-bold tracking-[-0.015em] text-text-primary-light dark:text-text-primary-dark">LUXE</h2>
+            </div>
+            <div class="hidden lg:flex flex-1 justify-end gap-8">
+                <nav class="flex items-center gap-9">
+                    <a class="text-sm font-medium leading-normal text-text-primary-light dark:text-text-primary-dark hover:text-cta-hover dark:hover:text-white" href="#">Home</a>
+                    <a class="text-sm font-medium leading-normal text-text-primary-light dark:text-text-primary-dark hover:text-cta-hover dark:hover:text-white" href="#">Shop</a>
+                    <a class="text-sm font-medium leading-normal text-text-primary-light dark:text-text-primary-dark hover:text-cta-hover dark:hover:text-white" href="#">Brands</a>
+                    <a class="text-sm font-medium leading-normal text-cta-hover dark:text-white" href="#">Blog</a>
+                </nav>
+                <div class="flex gap-2">
+                    <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-black/5 dark:bg-white/10 text-text-primary-light dark:text-text-primary-dark hover:bg-black/10 dark:hover:bg-white/20">
+                        <span class="material-symbols-outlined text-xl">search</span>
+                    </button>
+                    <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-black/5 dark:bg-white/10 text-text-primary-light dark:text-text-primary-dark hover:bg-black/10 dark:hover:bg-white/20">
+                        <span class="material-symbols-outlined text-xl">person</span>
+                    </button>
+                    <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-black/5 dark:bg-white/10 text-text-primary-light dark:text-text-primary-dark hover:bg-black/10 dark:hover:bg-white/20">
+                        <span class="material-symbols-outlined text-xl">shopping_bag</span>
+                    </button>
+                </div>
+            </div>
+            <button class="lg:hidden flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-black/5 dark:bg-white/10 text-text-primary-light dark:text-text-primary-dark">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+        </header>
+        <main class="flex-1 px-4 sm:px-6 lg:px-8 xl:px-20 py-10">
+            <div class="mx-auto max-w-7xl">
+                <!-- HeroSection -->
+                <section class="mb-16 md:mb-24">
+                    <div class="@container">
+                        <div class="flex min-h-[60vh] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 text-center" data-alt="A high-fashion model posing in a dramatic, flowing gown against a minimalist background" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMTNoi4GK3bD9_L6V5FInuIltPBhQaSgp9c6pJSXVVUFUOGbaLX5qWkS6PapTywk-PdfIvXbWzRqUb3QneLD78UoPfJz5Dq8XeTi8kX8jZ53hkE4ZTXgUlj6xHyiDNLF9as7HR-iA1otrrbjasvZZgnXDANWvdgkKTRzSlTQVEmUyk-hQDsqmxL88bCEzONW515DyTOXaMbWXgDDbR2ABRhKE23E--uCxI0HH0_5PwvO_1vdM2ZDUKdW5lvRPEvLjVjY9ymCsxrPk");'>
+                            <div class="flex flex-col gap-4">
+                                <h1 class="font-serif text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">The Essence of Timeless Style</h1>
+                                <h2 class="text-base font-normal leading-normal text-white/90 sm:text-lg">Explore the latest trends, designer interviews, and stories from the world of luxury fashion.</h2>
+                            </div>
+                            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-primary text-text-primary-light text-base font-bold leading-normal tracking-[0.015em] hover:bg-cta-hover hover:text-white transition-colors duration-300">
+                                <span class="truncate">Read More</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Featured Articles Section -->
+                <section class="mb-16 md:mb-24">
+                    <h2 class="mb-8 text-center font-serif text-3xl font-bold tracking-tight text-text-primary-light dark:text-text-primary-dark md:text-4xl">Bài viết nổi bật</h2>
+                    <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+                        <!-- Featured Card 1 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Close up of a designer handbag with intricate stitching details" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAms7ASKIhLUIsLA7P6Lwn-WmVTT01gO8W-vr2_G-EhdtbSYoXTws7SdWEkXjeMnBODSybx57KK-fZsCFubkI2AlJex1_jX0m5nxsCakZY-LhkB0J1F1qnE0ttctyg2v3nVgloZtN71pZDOO_wLt7jnAvOYH83E9SBUV6SuY4H8QMSchLmu5wSr1VsENKuPYdG2oKJYA5YpHny5vKs8SR-pRiMaDPQeDnxR0e0_ehcPEEAdpU3-R9jllfdDYcrM9zovqMOcs6AvVKs");'></div>
+                            <div class="flex flex-col items-start gap-2 py-4">
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">An Interview with a Visionary Designer</p>
+                                <p class="text-base font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">Discover the inspiration behind the latest groundbreaking collection that's captivating the fashion world.</p>
+                                <a class="mt-2 inline-block text-sm font-bold text-primary hover:text-cta-hover dark:hover:text-white" href="#">Read Full Story →</a>
+                            </div>
+                        </div>
+                        <!-- Featured Card 2 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="A model wearing a striking seasonal outfit on a runway" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhbE_IoJ-Qob16O6E_AocZMCT_1_UBpuJzSTs3jkS0Cus6cwef-mzGsnYDGlQBfP90Dz6LpjVniMApiRWHarXzEDst8jYHy5X1nYBNzxDHalYmNJ9Udn5jdR5XXtkriuC0BA1gHQmY8GTR3bGJ9NOWChkFY9wKOJVYkRwK7UnXTJKnHCu3H3vKE5nm8aKnKqyP7ZRdeJYkmomW7aExElCUpiEH7JGf7yGpseNl2-yiF3n4wXmkxa0MR4egrEvGy8ZcUKbFD8n7VgI");'></div>
+                            <div class="flex flex-col items-start gap-2 py-4">
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">Autumn/Winter 2024: A Lookbook Analysis</p>
+                                <p class="text-base font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">Breaking down the key trends and must-have pieces from this season's most anticipated collections.</p>
+                                <a class="mt-2 inline-block text-sm font-bold text-primary hover:text-cta-hover dark:hover:text-white" href="#">Read Full Story →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Brands Section -->
+                <section class="mb-16 md:mb-24">
+                    <h2 class="mb-8 text-center font-serif text-3xl font-bold tracking-tight text-text-primary-light dark:text-text-primary-dark md:text-4xl">Bài viết về các Brand</h2>
+                    <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-6 items-center">
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Chanel logo" href="#"><img alt="Chanel Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5JzUSo_4qYBEBxNS9e6j-KPYo88P9z0drWpaGYZ1XurfMThLX1zJcckL11jnE-VWujG_6rvOeHUBNuJVOiz0zT9O9WyiEVUgVHVofhnlqYWGNUoTKGWJ7XYVpYth5zY8qD9UHm2ODD9o64E1iIPLVU-ndiEFx8ulF11YGAuDwALakFrfsBGpUId0iXlbNepGHAiWZqmMFlF_lHuHoCTYJsLOVzQsKJR45A5t9Dw7GQS-NocZt_8u6iIzSCUVYyN1hrtskBuWM-sw"/></a>
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Dior logo" href="#"><img alt="Dior Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiBA1FvBezHUd1EdnnKpgxJjECeP9AkRaWpU4aRWieq7V47_gU4IUbDYGoH0Qv5Ln7Lqjy7C5ywFdM-96twWzFmrcr9LCDHxS0PENyCdqlIO6z_0YU6KR_joyqYwEywit6jfF3ywtVXhvK8N0z435HLhXQhG7deD685PeR_AxFpEmWZRMJFtkKGSAOKVM6bt2szKSuKg8IOy-Osg4O0iEs4mAPbuiIYKNGbnUOTJzE3nkvVyVunCDAWtzusOVE6QRzvHcqQKlFOME"/></a>
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Gucci logo" href="#"><img alt="Gucci Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHYxHuhyRhSkXBSKFarDdtBQFyLZyQYl6mrkzgAY7KVrE4Jjuun268oTum2GLOK_W41lT5khExuTLshILU6Xtv1TgqV8jAGQFHPEKerdoJr3uOCRJoEG5yezrT0yBp_LqovPxNsvyMxAVOueMk4EUOz63rJwUnS9eYlAyNe2Sxb6_wdk9JonIBxC0LDRnOiI3m91GE9Oftc6GXAkXh9pQa3u-pw1RrW652xB81EyAowWWSzMb5h1DM0X2m_ABdIKkJCGmTzbt_h48"/></a>
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Prada logo" href="#"><img alt="Prada Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN3HTtZerPZNpBoI4IyN8bqKKhuDTiuJAw4yH8LCq4GvVWikHiGCh9PhzXgJtQ0QYAP5IIKhSq9PV7mX8pA1kYXYhn8FBYLdzxRWV7TpURNvx02JnfQxT1LMRwR7QHRYt1HdNwhB8_zzLGtONzao9YIC0h1Nb6jCguoZTYqp9Xco-TrVGsXzwnW1JduANeTeM__4ZixXbP4DfBlt8mshycKIAM9XlN89rlxWrnIuY2W65pOG1S1UwjGuqKvS85YbPuIKj_yWc2gJM"/></a>
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Versace logo" href="#"><img alt="Versace Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMmroDsBI9lOiZoykwG2vQ36TrVesLfOvyzZTPHzBgRihAT5pjD2JtjpNYouByNLdk5rhpDJ_isfOkbl1Uf1474n5Q4TaUjIwZ0MJNKataiJUAkaq-_CmOxvOF7oyu0YTzZdBU0z5tTAPjEbxj0m23CJYa5AJCimvCrHTnwyw7V_yul8nK7Cyww_mKr3PU30qzd_ZQ0Tn9hpaVL0mU3eXHRsxsuYDJqEu2Q4TEWK4O987ACf4pRorV5KJXLX3UhtIZy89_uWh4q58"/></a>
+                        <a class="grayscale hover:grayscale-0 transition duration-300 opacity-60 hover:opacity-100" data-alt="Fendi logo" href="#"><img alt="Fendi Logo" class="mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbGnz9fDc4LqX5M7lKAOHgbXZyfj_Aa68X7BCcqFcsMCsSKXeO-O96zwvLLGAu1Z9ixAWTJAQUUMSWZgIhg0xkfKEvbmMtwczEs_t3WlkPxy2Ye40gOqG7PBxAB5R0p2PH9xKH9sUCKC2CyCVudVmknvGuKovqB6WxZROIdxvHElK8aglsAANRS0rUj9CelN65d2XAq6IKYhHvZdsVmpU5v-1jOEOfFai2DDvU0Vb-2Wdl9TvyinxV8_ff8vEfEbL97rdGLDpIwNc"/></a>
+                    </div>
+                </section>
+                <!-- Fashion News Blog Section -->
+                <section>
+                    <h2 class="mb-4 text-center font-serif text-3xl font-bold tracking-tight text-text-primary-light dark:text-text-primary-dark md:text-4xl">Blog Tin tức thời trang</h2>
+                    <div class="mb-8 flex justify-center border-b border-border-light dark:border-border-dark">
+                        <div class="flex items-center gap-4 sm:gap-8">
+                            <button class="border-b-2 border-primary py-3 px-2 text-sm font-bold text-text-primary-light dark:text-text-primary-dark">Tất cả</button>
+                            <button class="border-b-2 border-transparent py-3 px-2 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:border-cta-hover hover:text-cta-hover dark:hover:border-white dark:hover:text-white">Thời trang Nam</button>
+                            <button class="border-b-2 border-transparent py-3 px-2 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:border-cta-hover hover:text-cta-hover dark:hover:border-white dark:hover:text-white">Thời trang Nữ</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Article Card 1 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="A man in a stylish suit walking down a city street." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNt23MRJe6yInAdsYaJG9lVj_IkAz_M_Q6ow1f2ImBZagzEXmLXEKkQAxcRHvtRnNCKrXSZWtlQnr6wpvRTibnwmoqQ0PHNLoSqqlPh4vgbOaJVVnSw_LiTIqR5MpGpIXcsMAH8ygTCElgadXLk5h54GKyeeDiS3xUABzo8uRX35yQ0GR4ztugOVTAPQHQd3QQLO7GIj4Fp7f99NQK0b3n1rBGnJcIk67sWTv78Fp2I3NM5zHKgIcAd8GhcEacagi5vUL4YSEntjY");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Thời trang Nam</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">The Modern Gentleman's Wardrobe</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">Essential pieces that define contemporary men's fashion and elevate any look.</p>
+                            </div>
+                        </div>
+                        <!-- Article Card 2 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="A woman poses in a vibrant, colorful dress outdoors." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC00nusM5QDvya229GoJ8zpIBG1l7Csk6__l0GpGhL3IAPscNUq1n2WSvTH67fN0IAVxmVP6Uo5Ub3raOJzdNMAAGXpB5FRr4gmsjAlctWDdxj8LYRLSQnG5YqX_veNsmSpo2UBwrh8gdtBkzyllZWqIzwvtGgcWvOmYalTN_ZDnEvzKy2YELkuPJW_M7sOWCb0u-Z7g3yyAuY8Xwh89cBqNe4rflRRwcDo6RXt19W4WJid9YKkGpvaaBndNTPARFFVP6iKpNJ-oMU");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Thời trang Nữ</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">Bold Colors and Power Dressing</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">How to incorporate vibrant hues into your wardrobe for a confident statement.</p>
+                            </div>
+                        </div>
+                        <!-- Article Card 3 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Close up of luxury watches on display." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTDw5EpQFDOahcgt73MDejTV3iFx8S-KpdFADBCc8IdshJ126L-h2MkQfM4XCk4qXWWeIwNMm51LefLIqHXnLYkYjlX62r6d0L8mLFCGGHX63TuQQw4IVyi6xcylbTePpHSHXi_vaEnSvmexCslRmL-OS6ba-o4CubkvS3O5wWuIOu-6uJz0v4_pdQEIoAdkD_HogiWErosTCu8gzBfdIkj0TgC7UtynfPxYz79dzjKHeZwst29-70tBYHCYWqyoMDuKsOaOZ15d0");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Accessories</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">The Art of Horology: A Guide to Luxury Watches</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">Exploring the craftsmanship and heritage behind iconic timepieces.</p>
+                            </div>
+                        </div>
+                        <!-- Article Card 4 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="A woman with elegant make up and jewelry." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxafyaKC_qH34gNue917zZ4Qz7U-QvbZNMR8tiDj5_sFlEIHaIIJJDCDiWDZkK3Zb9l_1DBy4gAogs4QBtP_vC8pVupyzGuNyNvYkXYRqyAdMgyWPRWDaZchJuiqH_oFaCjWvG_LmaimwnS_ZjJugcIIq025KClU7AWAaqUE1XEdMc6THkWgGVpC-pOwIn9ZA5JaahxcJ5fvTXBxwobONI8h2XK8GUlGXCv-QfjNV4faXfjRspZAeN-yykmWW9FlbrYZpUEmbPfzc");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Thời trang Nữ</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">Minimalist Jewelry: Less is More</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">The subtle power of delicate jewelry and how to style it for maximum impact.</p>
+                            </div>
+                        </div>
+                        <!-- Article Card 5 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="A collection of high-end leather shoes for men." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhUd6gSv89xkvf44_qQp7JhDZsJB9a2EUb_GrFStWoZRKipzzQTQa9QSkbOfbnb4vE1LxoUBGuAu6fKeQlvyD7ozngzQDFyvqTte8481VsoyGs7Zn5KWcyBZEd8dxoGdZbOJEJbcngQz8sBaRnhZnHOC-byfDckMfWf6QCD2hn9LgUx1rRuhQgNgf7yV6fStUxBKoCjskTp6Jowi7Co4NV1kZeugfvn43br8VYgAZdwLbd-hXaI4qbBjmujxTxun8VhmtElMv2X9A");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Thời trang Nam</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">The Ultimate Guide to Men's Footwear</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">From classic Oxfords to modern sneakers, a look at essential shoe styles.</p>
+                            </div>
+                        </div>
+                        <!-- Article Card 6 -->
+                        <div class="flex flex-col group">
+                            <div class="w-full overflow-hidden rounded-lg bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Perfume bottles arranged aesthetically on a surface." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDe0w6QaMgNWKkyI92z9gXnsbYhKRHt7u_TLabu3ueYrV0lYZwxE82q2PEJSe2zAM_iwsdxVaIKYe7BWyNjhU1Wmly2i7lfyCtzk1Je8olDcELNdpWhvrvYGgJ_3I7GA3H0YwgWjo7Skr6SKtbNSA5DDbbAIkpWC35UZvGq_vJh03lpsPlHjkdn1N2HhmNNSC2O7nlVYD0_9J8eJ4akjQBs56AY3O8nWkFkdj1df_892KcMak5-SDVsPQ2qTxwh0Kdh0wIe0KBzedo");'></div>
+                            <div class="flex flex-col items-start gap-1 py-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">Beauty</p>
+                                <p class="text-lg font-bold leading-tight tracking-tight text-text-primary-light dark:text-text-primary-dark group-hover:text-cta-hover dark:group-hover:text-white transition-colors">Finding Your Signature Scent</p>
+                                <p class="text-sm font-normal leading-normal text-text-secondary-light dark:text-text-secondary-dark">An expert's advice on navigating the world of haute parfumerie.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-black/5 dark:bg-white/5 mt-16 md:mt-24">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex items-center gap-4">
+                        <div class="size-6 text-text-primary-light dark:text-text-primary-dark">
+                            <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h2 class="font-serif text-2xl font-bold tracking-[-0.015em] text-text-primary-light dark:text-text-primary-dark">LUXE</h2>
+                    </div>
+                    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                        <a class="hover:text-cta-hover dark:hover:text-white" href="#">About</a>
+                        <a class="hover:text-cta-hover dark:hover:text-white" href="#">Contact</a>
+                        <a class="hover:text-cta-hover dark:hover:text-white" href="#">Careers</a>
+                        <a class="hover:text-cta-hover dark:hover:text-white" href="#">Privacy Policy</a>
+                        <a class="hover:text-cta-hover dark:hover:text-white" href="#">Terms of Service</a>
+                    </nav>
+                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">© 2024 LUXE. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+</body></html>

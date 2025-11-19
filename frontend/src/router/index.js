@@ -17,12 +17,27 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/RegisterPage.vue')
+      component: () => import('@/views/Register.vue')
     },
     {
-      path: '/products',
-      name: 'products',
-      component: () => import('@/views/ProductListPage.vue')
+      path: '/product-brand',
+      name: 'products-brands',
+      component: () => import('@/views/BrandPage.vue')
+    },
+    {
+      path: '/product-man',
+      name: 'products-man-brands',
+      component: () => import('@/views/ProductManPage.vue')
+    },
+    {
+      path: '/product-woman',
+      name: 'products-woman-brands',
+      component: () => import('@/views/ProductWomanPage.vue')
+    },
+    {
+      path: '/product-blog',
+      name: 'products-blogs',
+      component: () => import('@/views/BlogPage.vue')
     },
     {
       path: '/products/:id',
@@ -32,8 +47,7 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      component: () => import('@/views/CartPage.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('@/views/CartPage.vue')
     },
     {
       path: '/checkout',
@@ -70,4 +84,3 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
-

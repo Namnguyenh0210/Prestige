@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LUXE | All Products</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style type="text/tailwindcss">
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #111111;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #FAFAFA;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #111111;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #FAFAFA;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-bg": "#FAFAFA",
+                        "primary-text": "#111111",
+                        "accent": "#D5BFA3",
+                        "secondary": "#CFCFCF",
+                        "cta-hover": "#000000",
+                        "primary": "#d5c0a4",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#1d1a15",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-primary-bg dark:bg-background-dark font-display text-primary-text dark:text-white/90">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-secondary/50 px-4 sm:px-10 py-4 font-display bg-primary-bg dark:bg-background-dark sticky top-0 z-20">
+            <div class="flex items-center gap-4 text-primary-text dark:text-white">
+                <a class="flex items-center gap-4" href="#">
+                    <div class="size-6">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-bold tracking-[-0.015em]">LUXE</h2>
+                </a>
+            </div>
+            <nav class="hidden lg:flex flex-1 justify-center items-center gap-9">
+                <a class="text-primary-text dark:text-white/90 text-sm font-medium leading-normal hover:text-cta-hover dark:hover:text-white" href="#">New In</a>
+                <a class="text-primary-text dark:text-white/90 text-sm font-medium leading-normal hover:text-cta-hover dark:hover:text-white" href="#">Clothing</a>
+                <a class="text-primary-text dark:text-white/90 text-sm font-medium leading-normal hover:text-cta-hover dark:hover:text-white" href="#">Shoes</a>
+                <a class="text-primary-text dark:text-white/90 text-sm font-medium leading-normal hover:text-cta-hover dark:hover:text-white" href="#">Accessories</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-primary-text dark:text-white/90">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-primary-text dark:text-white/90">
+                    <span class="material-symbols-outlined">person</span>
+                </button>
+                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-primary-text dark:text-white/90">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </button>
+            </div>
+        </header>
+        <div class="w-full h-64 md:h-80 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5W0Z1Vkco91_aJ_qkKWvtqX0Yb9RrdT2NsXC35LNW-qWI2knzUdihll3uvOo4CRQlHBcY85Vh-zFPBRLfK1bgDV4oK-x21wGeGycdUAV3LsGIuJ7CswmJt7UpnPsXc2zNxkktJoUzwzPOXr6NahbQc4xp-16Ms8jXCM_UbGr9T25x0CccdBp50sAipknWdVzd8LFXDjxsKynEsDvPxXKYFIxOU5luI-v3Afy3GlgNCko9gXki3jooTC40OzAGyVl0bLitFtWyHfI");'>
+            <div class="w-full h-full flex flex-col justify-center items-center bg-black/30">
+                <h1 class="text-white text-4xl md:text-6xl font-bold tracking-tight">New Season Arrivals</h1>
+                <p class="text-white/90 mt-4 text-lg">Discover the latest in luxury fashion</p>
+            </div>
+        </div>
+        <main class="px-4 sm:px-10 lg:px-20 py-10 flex-1">
+            <div class="mx-auto max-w-7xl">
+                <div class="flex flex-wrap justify-between gap-4 py-4 mb-6">
+                    <h1 class="text-primary-text dark:text-white text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em]">All Products</h1>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <aside class="w-full lg:w-[30%] lg:pr-8">
+                        <div class="sticky top-28 space-y-8">
+                            <div class="py-6 border-b border-secondary/50">
+                                <h3 class="text-lg font-semibold mb-4 text-primary-text dark:text-white">Price</h3>
+                                <div class="relative">
+                                    <input class="w-full h-1 bg-secondary/30 rounded-full appearance-none cursor-pointer range-lg dark:bg-gray-700 accent-primary-text dark:accent-accent" max="3000" min="0" type="range" value="1250"/>
+                                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                        <span>$0</span>
+                                        <span>$1,250</span>
+                                        <span>$3,000+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-6 border-b border-secondary/50">
+                                <h3 class="text-lg font-semibold mb-4 text-primary-text dark:text-white">Size</h3>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <button class="border border-secondary dark:border-gray-600 rounded-md py-2 text-center text-sm font-medium hover:border-cta-hover dark:hover:border-accent">S</button>
+                                    <button class="border border-cta-hover dark:border-accent bg-primary-text text-primary-bg dark:bg-accent dark:text-primary-text rounded-md py-2 text-center text-sm font-medium">M</button>
+                                    <button class="border border-secondary dark:border-gray-600 rounded-md py-2 text-center text-sm font-medium hover:border-cta-hover dark:hover:border-accent">L</button>
+                                    <button class="border border-secondary dark:border-gray-600 rounded-md py-2 text-center text-sm font-medium hover:border-cta-hover dark:hover:border-accent">XL</button>
+                                </div>
+                            </div>
+                            <div class="py-6 border-b border-secondary/50">
+                                <h3 class="text-lg font-semibold mb-4 text-primary-text dark:text-white">Sản phẩm mới</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <input checked="" class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="new-all" name="new_products_filter" type="radio"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="new-all">Tất cả sản phẩm mới</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="new-week" name="new_products_filter" type="radio"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="new-week">Theo tuần</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="new-month" name="new_products_filter" type="radio"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="new-month">Theo tháng</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-6 border-b border-secondary/50">
+                                <h3 class="text-lg font-semibold mb-4 text-primary-text dark:text-white">Sản phẩm khuyến mãi</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <input class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="promo-hot-sale" name="promotional_products" type="checkbox"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="promo-hot-sale">Hot sale</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="promo-member-sale" name="promotional_products" type="checkbox"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="promo-member-sale">Sale for members</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-6">
+                                <h3 class="text-lg font-semibold mb-4 text-primary-text dark:text-white">Gender</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <input class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="gender-nam" name="gender" type="radio"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="gender-nam">Nam</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input checked="" class="h-4 w-4 border-secondary text-primary-text focus:ring-accent" id="gender-nu" name="gender" type="radio"/>
+                                        <label class="ml-3 text-sm text-primary-text dark:text-white/90" for="gender-nu">Nữ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-6 pt-0 space-y-4">
+                                <button class="w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:bg-accent dark:text-primary-text dark:hover:bg-accent/80">Áp dụng</button>
+                                <button class="w-full bg-transparent text-primary-text dark:text-white/90 border border-secondary dark:border-gray-600 text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-black/5 dark:hover:bg-white/10">Clear</button>
+                            </div>
+                        </div>
+                    </aside>
+                    <div class="w-full lg:w-[70%]">
+                        <div class="flex justify-between items-center gap-4 py-3 border-b border-secondary/50 mb-8">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Showing 9 of 72 products</p>
+                            <div class="relative">
+                                <select class="appearance-none w-full md:w-auto bg-transparent border border-secondary dark:border-gray-600 text-primary-text dark:text-white text-sm rounded-full py-2 pl-4 pr-10 focus:ring-accent focus:border-accent">
+                                    <option>Sort by: Popularity</option>
+                                    <option>Sort by: Price (Low to High)</option>
+                                    <option>Sort by: Price (High to Low)</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">expand_more</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="Model wearing a classic beige trench coat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmR7gibmiw_N3IdeuKJiLgfAY0r4KFIeUDmC5hh8EjSyAz9Gfji-yFyc2mgz99nM-wwg4OR7eLCbDuJ1ORTr4Trni6intCcTTJ1B3y8fcMimjdwp8L9Qt7uYOGBQeJwmf_-TNYMaFFTvYilYEWjjiigFqbPLPegEEYCW7hq1_ch5yXfCxI-pbLC0DygKLGw4PyORGTMiIiO6vyeFZ0MsLU9aBERUh3X_36wj8DNaWKkPEAhjJlN56BBfuEsBx7nkt6WzA_KM9BwNw");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">The Classic Trench</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$1,250.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="Close up of a white silk blend blouse" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRwvhbMHQOAB6f5--rmmBNyp5TrGtdBnUZPTZSf8kQZgyAthxqAK4mzWn-5rRDrQaI-WlXFIHN2actKrvI-9-92NeyXuIMQHYFVjd03qWolyLPWeLZ_LjtWDU-rruO0FOKKbG0-vRquSlF1M7t5SuCGbmd7uVUVsRUbViCqZ_XGXZzhqzGeNZlM7b0X2nlUDGJDoJbw8y8b-eYjxBo-cXSIctCF5bPGKxP1kRlIqyC6Sf0pcGIjJiOnGNrnfEdhry2mjF2IHY6gXo");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Silk Blend Blouse</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$450.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="A pair of black leather ankle boots" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAroc_qT5_HJYCgKW-8AD9uy0lBQbeb9_EYUVsnxP2377ghxt2Y6IbsrlisQs4AI_NuBL1B_ZM4oQoAqYmoKO-W3-jAXZgg-cjUgvpHq0SN08wpGxXD32B0sKiJHbbQ_j_1J_Ml6ih0l1A_gU5fOWUeolF2JSZuu3Ll894OHrgX4CVt5uE3k5ZGFPBx4Zy14qdvoIzitfXoMkVfGTNjzlFXbB60L76oFo_90U8-p1c9ZOMl8XlI212XhtaKplWs1yfddJcwsrzJMxE");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Leather Ankle Boots</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$890.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="A black structured leather tote bag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5W0Z1Vkco91_aJ_qkKWvtqX0Yb9RrdT2NsXC35LNW-qWI2knzUdihll3uvOo4CRQlHBcY85Vh-zFPBRLfK1bgDV4oK-x21wGeGycdUAV3LsGIuJ7CswmJt7UpnPsXc2zNxkktJoUzwzPOXr6NahbQc4xp-16Ms8jXCM_UbGr9T25x0CccdBp50sAipknWdVzd8LFXDjxsKynEsDvPxXKYFIxOU5luI-v3Afy3GlgNCko9gXki3jooTC40OzAGyVl0bLitFtWyHfI");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Structured Tote Bag</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$995.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="A soft beige cashmere scarf" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDITX-dPaQKh3U9maJIN6g9DjTWOiN4YWnqeC3kzRUa2jKNF38NZpiiI1VPX46e0WM8WU20V_SrwgWsCxB_KiiIbKOipcQMgoK-ILZDb2PmLZZKx1q6pAWty3jUlFfUYQpZ1QejrsNphCxSeLfcyWal6StFFx4mGU_rnbIXWFjc8eG8uAoEiyVM950xsJMKr0LaodU_VbckqdJ8S8KV27s0bHfO_ZTULgxpHz1RWOWsNKIVRrdgzV_bJqE4vPjrmNt_4xW4X0DTyaw");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Cashmere Scarf</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$220.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="Model wearing tailored grey wool trousers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAD4wrkkpp3eGzuqYieTEGpcppdCBY-GgPTEOTr-wjaYLpxJC7ehBVBxvDvToZskBY4_rfQADRh6CZJGwYGasHdGmNLkzTQ8q-2mOp4jEj--YOzSfn-RuHh9e_xLH2um5sCxD3y6RFFkI8Jiby9o6OvQwbyfCXDOcKgLu4CubVO_xm7oODuPfdITR3hw-FAbBkewN4JN9ibOqxaR6tYkhGB-rLzhfcPAgC8cxoZW1p4aVUMkRmDG-dDZ5NYIKcUvNQyuikmnJq7-50");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Tailored Wool Trousers</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$680.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="An elegant black evening gown on a mannequin" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGixMlMTAslZimVSh8cD-QPL4E4yy4xPTsjFQYRISY-l0Ap80lMduNYT2XKQxWSjj_H5or98G7RrtJtP21iNmJej_GCFAmZ-4CWcvINN108G6AZqzPcCQxmdiCdF0wm9IyhJKGzacSvZ_j2fJby1k0Jrt7M7xRKms-IMCvddf6lfys8M0ULags1eETMobsUAciFIXEzeYmEVLkRE0Kb122BMx-4jHS_jT0AczrAN_qmrzWjee4P4-TzqwniFfLl-xmqttMe_prAX4");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">The Evening Gown</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$2,500.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="A pair of minimalist gold hoop earrings" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwJvTvkvH-ZO9rTcNTljjVjxKVAukisbssyGt-HYep9V46z_JRihhQGrrgTN3VC8sYysZlOh4nO4ISzOG27RhxNmhyiiwdpc2Q0Dk6mm6wgVe3ntIbXaf7PduZTocgcvgKemgD20m5Nh5Jdn2XSwbLILJ5odAb-bR4pMKl1Vsh6aWb6JeEcK3-H_7Kgi7lnC6qUXEmHpo0_lxgpl66a3qHP-6-DOau23WdPlxDhmZXcNL0yd977et7XNsw6KeVxDLVWj2jT9XNe7Y");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Minimalist Gold Hoops</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$310.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                            <div class="group flex flex-col gap-3 relative overflow-hidden">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg bg-[#CFCFCF]/30 transition-transform duration-300 group-hover:scale-105" data-alt="A stylish blue velvet blazer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbFE6HBG9VsZdWwHCiYhqvn_xN7FEtfreFruP3ifT6NvxBtprnizUDYSAXGHatz_T0T7yRyOrsWdsz-jRKPQQ6TEpE1fgmHhZNb_bpNdxyo4C12CflyteNZe5ZPfUOwKQ_yKWHeAd2aCRAUvx5eVPPW4-oK6lszU0AhFdYn3lF9mGWqt3uF1WfgUhoaxj5HZ9UeUMgbRrF_4bL89W5KkwteG8JoS4FPj2SNPc4nlvDCmbwFKs3tDztQ71_1etRMSA6XRR-iChJBNk");'></div>
+                                <div class="flex flex-col flex-1">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Brand Name</p>
+                                    <h4 class="text-primary-text dark:text-white/90 text-base font-medium leading-normal flex-1">Velvet Blazer</h4>
+                                    <p class="text-primary-text dark:text-white/90 text-sm font-semibold leading-normal mt-1">$950.00</p>
+                                </div>
+                                <button class="mt-3 w-full bg-cta-hover text-primary-bg text-sm font-bold py-2.5 rounded-lg transition-colors duration-300 hover:bg-primary-text/80 dark:hover:bg-accent/80">Thêm giỏ hàng</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center gap-2 mt-12">
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-cta-hover text-primary-bg dark:bg-accent dark:text-cta-hover text-sm font-bold">1</button>
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 text-sm">2</button>
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 text-sm">3</button>
+                            <span class="text-gray-500 dark:text-gray-400">...</span>
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 text-sm">8</button>
+                            <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-primary-bg dark:bg-background-dark border-t border-secondary/50 mt-16">
+            <div class="mx-auto max-w-7xl px-4 sm:px-10 lg:px-20 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-bold text-primary-text dark:text-white mb-4">Shop</h3>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">New In</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Clothing</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Shoes</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Accessories</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-primary-text dark:text-white mb-4">Customer Service</h3>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Contact Us</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Shipping &amp; Returns</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">FAQ</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Size Guide</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-primary-text dark:text-white mb-4">Company</h3>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">About Us</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Careers</a></li>
+                            <li><a class="hover:text-cta-hover dark:hover:text-white" href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-primary-text dark:text-white mb-4">Follow Us</h3>
+                        <div class="flex space-x-4 text-gray-500 dark:text-gray-400">
+                            <a class="hover:text-cta-hover dark:hover:text-white" href="#">
+                                <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a class="hover:text-cta-hover dark:hover:text-white" href="#">
+                                <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                                </svg>
+                            </a>
+                            <a class="hover:text-cta-hover dark:hover:text-white" href="#">
+                                <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.163 1.943c-1.042.046-1.693.208-2.227.423a3.465 3.465 0 00-1.228.898 3.465 3.465 0 00-.898 1.228c-.215.534-.377 1.185-.423 2.227-.046 1.012-.058 1.35-.058 3.65s.012 2.638.058 3.65c.046 1.042.208 1.693.423 2.227.224.548.503 1.01.898 1.228.395.224.88.503 1.228.898.534.215 1.185.377 2.227.423 1.012.046 1.35.058 3.65.058s2.638-.012 3.65-.058c1.042-.046 1.693-.208 2.227-.423a3.465 3.465 0 001.228-.898 3.465 3.465 0 00.898-1.228c.215-.534.377-1.185.423-2.227.046-1.012.058-1.35.058-3.65s-.012-2.638-.058-3.65c-.046-1.042-.208-1.693-.423-2.227a3.465 3.465 0 00-.898-1.228 3.465 3.465 0 00-1.228-.898c-.534-.215-1.185-.377-2.227-.423-1.012-.046-1.35-.058-3.65-.058s-2.638.012-3.65.058zM12 8.355a3.645 3.645 0 100 7.29 3.645 3.645 0 000-7.29zm0 5.355a1.71 1.71 0 110-3.42 1.71 1.71 0 010 3.42zM16.95 6.405a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 border-t border-secondary/50 pt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+                    <p>© 2024 LUXE. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+</body></html>

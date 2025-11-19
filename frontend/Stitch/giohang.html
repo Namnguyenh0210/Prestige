@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Shopping Cart - LUXE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@700;800&amp;display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#191919",
+                        "primary-text": "#111111",
+                        "accent": "#D5BFA3",
+                        "secondary-gray": "#CFCFCF",
+                        "hover-cta": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary-text">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#EAEAEA] px-4 sm:px-10 lg:px-20 py-4 bg-white dark:bg-background-dark dark:border-b-gray-700">
+            <div class="flex items-center gap-4 text-primary-text dark:text-white">
+                <div class="size-6 text-primary-text dark:text-white">
+                    <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold tracking-[-0.015em] font-heading">LUXE</h2>
+            </div>
+            <div class="hidden lg:flex flex-1 justify-center items-center gap-9">
+                <a class="text-primary-text dark:text-gray-300 text-sm font-medium leading-normal hover:text-accent" href="#">New In</a>
+                <a class="text-primary-text dark:text-gray-300 text-sm font-medium leading-normal hover:text-accent" href="#">Designers</a>
+                <a class="text-primary-text dark:text-gray-300 text-sm font-medium leading-normal hover:text-accent" href="#">Clothing</a>
+                <a class="text-primary-text dark:text-gray-300 text-sm font-medium leading-normal hover:text-accent" href="#">Bags</a>
+                <a class="text-primary-text dark:text-gray-300 text-sm font-medium leading-normal hover:text-accent" href="#">Shoes</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-transparent text-primary-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-transparent text-primary-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <span class="material-symbols-outlined">favorite_border</span>
+                </button>
+                <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-transparent text-primary-text dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </button>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUISzTuEYcCugsXqZ9qffyxhOLTfsPrUpf7IHdxZVbuzU9RPDtCqemm0GBUDOwUQZGdJ1uXTt2A1cUQL0NV0mc70Fqou5BdRveZQBocAOzCJzylhKN5bMAew3hB8-bCPXjrKKH31x9B-pUGr5YI_JYysNYHZko5meerc2sOH2K2qsHO1cn344aq-8yasuFmiBSLONeseL735qcHgDFGrhAfTGUAMlHtghBLJrg9AbxV-toE42ZGLHGvsjyeYDV0ICF2fhMWUp0PR0");'></div>
+            </div>
+        </header>
+        <main class="px-4 sm:px-10 lg:px-20 py-10 lg:py-16">
+            <div class="flex flex-col w-full">
+                <div class="flex flex-wrap justify-between gap-3 mb-10"><p class="text-primary-text dark:text-white text-4xl lg:text-5xl font-black font-heading tracking-[-0.033em] min-w-72">Shopping Cart</p></div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+                    <div class="lg:col-span-2 space-y-10">
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-primary-text dark:text-white text-2xl font-bold font-heading">Thông tin đơn hàng</h2>
+                                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-primary-text dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="truncate">Chỉnh sửa</span>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-[120px_1fr] gap-x-6 text-sm">
+                                <div class="col-span-2 grid grid-cols-subgrid border-t border-t-secondary-gray/50 py-4">
+                                    <p class="text-gray-500 dark:text-gray-400 font-normal leading-normal">Họ tên</p>
+                                    <p class="text-primary-text dark:text-white font-medium leading-normal">Nguyen Van A</p>
+                                </div>
+                                <div class="col-span-2 grid grid-cols-subgrid border-t border-t-secondary-gray/50 py-4">
+                                    <p class="text-gray-500 dark:text-gray-400 font-normal leading-normal">Số điện thoại</p>
+                                    <p class="text-primary-text dark:text-white font-medium leading-normal">0901234567</p>
+                                </div>
+                                <div class="col-span-2 grid grid-cols-subgrid border-t border-b border-t-secondary-gray/50 border-b-secondary-gray/50 py-4">
+                                    <p class="text-gray-500 dark:text-gray-400 font-normal leading-normal">Địa chỉ</p>
+                                    <p class="text-primary-text dark:text-white font-medium leading-normal">123 Duong ABC, Phuong 1, Quan 2, Thanh pho Ho Chi Minh</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2" for="notes">Ghi chú</label>
+                                    <textarea class="block w-full rounded-md border-secondary-gray focus:border-accent focus:ring-accent sm:text-sm bg-background-light dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="notes" name="notes" placeholder="Thêm ghi chú cho đơn hàng của bạn..." rows="3"></textarea>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Phương thức vận chuyển</h3>
+                                        <div class="space-y-3">
+                                            <div class="flex items-center">
+                                                <input checked="" class="h-4 w-4 border-secondary-gray text-accent focus:ring-accent" id="shipping-standard" name="shipping-method" type="radio"/>
+                                                <label class="ml-3 block text-sm font-medium text-primary-text dark:text-white" for="shipping-standard">Giao hàng tiêu chuẩn</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input class="h-4 w-4 border-secondary-gray text-accent focus:ring-accent" id="shipping-express" name="shipping-method" type="radio"/>
+                                                <label class="ml-3 block text-sm font-medium text-primary-text dark:text-white" for="shipping-express">Giao hàng nhanh</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Hình thức thanh toán</h3>
+                                        <div class="space-y-3">
+                                            <div class="flex items-center">
+                                                <input checked="" class="h-4 w-4 border-secondary-gray text-accent focus:ring-accent" id="payment-card" name="payment-method" type="radio"/>
+                                                <label class="ml-3 block text-sm font-medium text-primary-text dark:text-white" for="payment-card">Thẻ Tín dụng / Ghi nợ</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input class="h-4 w-4 border-secondary-gray text-accent focus:ring-accent" id="payment-transfer" name="payment-method" type="radio"/>
+                                                <label class="ml-3 block text-sm font-medium text-primary-text dark:text-white" for="payment-transfer">Chuyển khoản ngân hàng</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="text-primary-text dark:text-white text-2xl font-bold mb-6 font-heading">Giỏ hàng các sản phẩm đã chọn (2)</h2>
+                            <div class="space-y-6">
+                                <div class="flex gap-6 border-b border-secondary-gray/50 pb-6">
+                                    <div class="w-24 h-32 lg:w-32 lg:h-40 flex-shrink-0 bg-gray-200 rounded-lg bg-cover bg-center" data-alt="White oversized shirt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCjRm4udgZD31GdcEpB4yjXNnv9pjZnmu2BTO0gEsaN80jdzWjVZ5iQvDNrPkOQHZ11PSDlSzsbgvf2ujVkqbB505XYbEP8Yxn0zkCcfRuxT3io4Rzv90GJlZuTdnlaVLIZ_3IQXz4AHI7dn8T4hdkwB9zVujtCp0sBwtrxWZdy3ro7RnM_jzfPEE_v3pGmrEu4r4KG8hyxveLc76VKtrpw_KnCxItFL_lvoKa_MpRZMRG6q5xdhHl1z0QR-mWgpMv6je_tspKeag')"></div>
+                                    <div class="flex flex-col flex-grow">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">MAISON ELITE</p>
+                                                <h3 class="text-lg font-bold text-primary-text dark:text-white">Oversized Poplin Shirt</h3>
+                                                <p class="text-xs text-gray-400 mt-1">Size: M / Color: White</p>
+                                            </div>
+                                            <p class="text-lg font-bold text-primary-text dark:text-white">3,500,000đ</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-auto">
+                                            <div class="flex items-center border border-secondary-gray rounded-md">
+                                                <button class="px-3 py-1 text-lg font-medium">-</button>
+                                                <span class="px-3 py-1 text-sm">1</span>
+                                                <button class="px-3 py-1 text-lg font-medium">+</button>
+                                            </div>
+                                            <button class="text-sm text-gray-500 hover:text-red-500">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6 border-b border-secondary-gray/50 pb-6">
+                                    <div class="w-24 h-32 lg:w-32 lg:h-40 flex-shrink-0 bg-gray-200 rounded-lg bg-cover bg-center" data-alt="Beige wide-leg trousers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAd3rptzSO0M7vbHnIr5grTHX5Sy2s2tbMAw8LQfe9aalE1XOIoL0MZNsgcmnYsvo_-_e_4m996_CkHLLsL63hEMhbxuNpAZiUtbJwE8ASGAxQk1GbbyDNODxmEK9Ygw7xmdLteSJ0Ek_lDPGa3yeEPN2JPlQBAoddD5Evo3JthIFzyvmnPg9KNLws0ro3wj2hJoRUWEMDIlIkdyroH14XODcIcO-mYmWBamN1sfmFAWHldz1Jme00ksE2CLmzHJrxeJCvImCkE6Z4')"></div>
+                                    <div class="flex flex-col flex-grow">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">STUDIO REN</p>
+                                                <h3 class="text-lg font-bold text-primary-text dark:text-white">Wide-Leg Linen Trousers</h3>
+                                                <p class="text-xs text-gray-400 mt-1">Size: S / Color: Beige</p>
+                                            </div>
+                                            <p class="text-lg font-bold text-primary-text dark:text-white">4,200,000đ</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-auto">
+                                            <div class="flex items-center border border-secondary-gray rounded-md">
+                                                <button class="px-3 py-1 text-lg font-medium">-</button>
+                                                <span class="px-3 py-1 text-sm">1</span>
+                                                <button class="px-3 py-1 text-lg font-medium">+</button>
+                                            </div>
+                                            <button class="text-sm text-gray-500 hover:text-red-500">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <a class="text-sm font-medium text-primary-text dark:text-white underline hover:text-accent" href="#">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1">
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg sticky top-10">
+                            <h2 class="text-primary-text dark:text-white text-2xl font-bold mb-6 font-heading">Tóm tắt đơn hàng</h2>
+                            <div class="mb-6">
+                                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Ưu đãi cho bạn</h3>
+                                <div class="flex gap-2">
+                                    <input class="flex-grow rounded-md border-secondary-gray focus:border-accent focus:ring-accent sm:text-sm bg-background-light dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Nhập mã voucher" type="text"/>
+                                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-primary-text dark:text-white text-sm font-bold border border-secondary-gray hover:bg-gray-100 dark:hover:bg-gray-700">Áp dụng</button>
+                                </div>
+                            </div>
+                            <div class="space-y-3 border-t border-b border-secondary-gray/50 py-6">
+                                <div class="flex justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-400">Tạm tính</p>
+                                    <p class="text-primary-text dark:text-white">7,700,000đ</p>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-400">Phí vận chuyển</p>
+                                    <p class="text-primary-text dark:text-white">50,000đ</p>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <p class="text-gray-500 dark:text-gray-400">Giảm giá</p>
+                                    <p class="text-primary-text dark:text-white">- 0đ</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-6">
+                                <p class="text-lg font-bold text-primary-text dark:text-white">Tổng cộng</p>
+                                <p class="text-xl font-black text-primary-text dark:text-white">7,750,000đ</p>
+                            </div>
+                            <button class="w-full mt-8 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-hover-cta text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90">
+                                <span class="truncate">Thanh toán</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body></html>
