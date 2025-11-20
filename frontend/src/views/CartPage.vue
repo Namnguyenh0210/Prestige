@@ -141,26 +141,26 @@
               </div>
             </div>
             <div>
-              <h2 class="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold mb-6 font-heading">Giỏ hàng các sản phẩm đã chọn ({{ cartItemCount }})</h2>
+              <h2 class="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold mb-6 font-heading">Giỏ hàng các sản phẩm đã chọn ({{ totalItems }})</h2>
               <div class="space-y-6">
-                <div v-for="item in cartItems" :key="item.id" class="flex gap-6 border-b border-secondary-gray/50 pb-6">
-                  <div class="w-24 h-32 lg:w-32 lg:h-40 flex-shrink-0 bg-gray-200 rounded-lg bg-cover bg-center" :style="{ backgroundImage: `url(${item.image})` }" :alt="item.alt"></div>
+                <div v-for="item in items" :key="item.maBienThe" class="flex gap-6 border-b border-secondary-gray/50 pb-6">
+                  <div class="w-24 h-32 lg:w-32 lg:h-40 flex-shrink-0 bg-gray-200 rounded-lg bg-cover bg-center" :style="{ backgroundImage: `url(${item.anhBienThe || 'https://via.placeholder.com/200x300'})` }"></div>
                   <div class="flex flex-col flex-grow">
                     <div class="flex justify-between">
                       <div>
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ item.brand }}</p>
-                        <h3 class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">{{ item.name }}</h3>
-                        <p class="text-xs text-gray-400 mt-1">{{ item.size }} / {{ item.color }}</p>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ item.tenMau || '' }}</p>
+                        <h3 class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">{{ item.tenSP }}</h3>
+                        <p class="text-xs text-gray-400 mt-1">{{ item.tenSize || '' }} {{ item.tenMau ? '/' : '' }} {{ item.tenMau || '' }}</p>
                       </div>
-                      <p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">{{ formatPrice(item.price) }}</p>
+                      <p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">{{ formatPrice(item.giaBan) }}</p>
                     </div>
                     <div class="flex items-center justify-between mt-auto">
                       <div class="flex items-center border border-secondary-gray rounded-md">
-                        <button @click="decreaseQuantity(item.id)" class="px-3 py-1 text-lg font-medium">-</button>
-                        <span class="px-3 py-1 text-sm">{{ item.quantity }}</span>
-                        <button @click="increaseQuantity(item.id)" class="px-3 py-1 text-lg font-medium">+</button>
+                        <button @click="updateQuantity(item.maBienThe, Math.max(1, item.soLuong - 1))" class="px-3 py-1 text-lg font-medium">-</button>
+                        <span class="px-3 py-1 text-sm">{{ item.soLuong }}</span>
+                        <button @click="updateQuantity(item.maBienThe, item.soLuong + 1)" class="px-3 py-1 text-lg font-medium">+</button>
                       </div>
-                      <button @click="removeItem(item.id)" class="text-sm text-gray-500 hover:text-red-500">Remove</button>
+                      <button @click="removeItem(item.maBienThe)" class="text-sm text-gray-500 hover:text-red-500">Remove</button>
                     </div>
                   </div>
                 </div>
@@ -173,13 +173,6 @@
           <div class="lg:col-span-1">
             <div class="bg-white dark:bg-background-dark p-8 rounded-lg sticky top-10">
               <h2 class="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold mb-6 font-heading">Tóm tắt đơn hàng</h2>
-              <div class="mb-6">
-                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Ưu đãi cho bạn</h3>
-                <div class="flex gap-2">
-                  <input v-model="voucherCode" class="flex-grow rounded-md border-secondary-gray focus:border-accent focus:ring-accent sm:text-sm bg-background-light dark:bg-background-dark dark:border-gray-600 dark:text-text-primary-dark" placeholder="Nhập mã voucher" type="text"/>
-                  <button @click="applyVoucher" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-text-primary-light dark:text-text-primary-dark text-sm font-bold border border-secondary-gray hover:bg-black/5 dark:hover:bg-white/10">Áp dụng</button>
-                </div>
-              </div>
               <div class="space-y-3 border-t border-b border-secondary-gray/50 py-6">
                 <div class="flex justify-between text-sm">
                   <p class="text-gray-500 dark:text-gray-400">Tạm tính</p>
@@ -187,20 +180,17 @@
                 </div>
                 <div class="flex justify-between text-sm">
                   <p class="text-gray-500 dark:text-gray-400">Phí vận chuyển</p>
-                  <p class="text-text-primary-light dark:text-text-primary-dark">{{ formatPrice(shippingCost) }}</p>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <p class="text-gray-500 dark:text-gray-400">Giảm giá</p>
-                  <p class="text-text-primary-light dark:text-text-primary-dark">- {{ formatPrice(discount) }}</p>
+                  <p class="text-text-primary-light dark:text-text-primary-dark">0đ</p>
                 </div>
               </div>
               <div class="flex justify-between items-center mt-6">
                 <p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">Tổng cộng</p>
-                <p class="text-xl font-black text-text-primary-light dark:text-text-primary-dark">{{ formatPrice(total) }}</p>
+                <p class="text-xl font-black text-text-primary-light dark:text-text-primary-dark">{{ formatPrice(subtotal) }}</p>
               </div>
-              <router-link to="/checkout" class="w-full mt-8 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 no-underline">
+              <button @click="doCheckout" :disabled="loading || items.length===0" class="w-full mt-8 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 disabled:opacity-50">
                 <span class="truncate">Thanh toán</span>
-              </router-link>
+              </button>
+              <p v-if="checkoutMessage" class="mt-4 text-sm" :class="checkoutSuccess ? 'text-green-600' : 'text-red-600'">{{ checkoutMessage }}</p>
             </div>
           </div>
         </div>
@@ -210,24 +200,40 @@
 </template>
 
 <script setup>
-import { useCartPageStore } from '../stores/CartPage'
+import { onMounted, ref, computed } from 'vue'
+import { useCartStore } from '@/stores/cartStore'
+import { useAuthStore } from '@/stores/authStore'
 
-const cartPageStore = useCartPageStore()
+const cartStore = useCartStore()
+const authStore = useAuthStore()
+const loading = computed(() => cartStore.loading)
+const items = computed(() => cartStore.items)
+const totalItems = computed(() => cartStore.totalItems)
+const subtotal = computed(() => cartStore.totalPrice)
 
-// Expose store properties for template
-const voucherCode = cartPageStore.voucherCode
-const discount = cartPageStore.discount
-const orderInfo = cartPageStore.orderInfo
-const cartItems = cartPageStore.cartItems
-const cartItemCount = cartPageStore.cartItemCount
-const subtotal = cartPageStore.subtotal
-const shippingCost = cartPageStore.shippingCost
-const total = cartPageStore.total
-const formatPrice = cartPageStore.formatPrice
-const increaseQuantity = cartPageStore.increaseQuantity
-const decreaseQuantity = cartPageStore.decreaseQuantity
-const removeItem = cartPageStore.removeItem
-const applyVoucher = cartPageStore.applyVoucher
+// Order info (basic mapping; address would normally come from address API)
+const orderInfo = ref({
+  fullName: authStore.user?.fullName || 'Khách hàng',
+  phone: authStore.user?.phone || 'Chưa có',
+  address: authStore.user?.address || 'Chưa cập nhật',
+  notes: '',
+  shippingMethod: 'standard',
+  paymentMethod: 'card'
+})
+
+function formatPrice(val) { return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(val || 0) }
+function updateQuantity(maBienThe, soLuong) { cartStore.updateQuantity(maBienThe, soLuong) }
+function removeItem(maBienThe) { cartStore.removeFromCart(maBienThe) }
+
+const checkoutMessage = ref('')
+const checkoutSuccess = ref(false)
+async function doCheckout() {
+  const res = await cartStore.checkout(1, orderInfo.value.paymentMethod === 'card' ? 2 : 1)
+  checkoutSuccess.value = res.success
+  checkoutMessage.value = res.success ? `Đặt hàng thành công. Mã đơn: ${res.maDH}` : (res.message || 'Checkout lỗi')
+}
+
+onMounted(() => { cartStore.fetchCart() })
 </script>
 
 <style src="../assets/css/CartPage.css"></style>

@@ -26,4 +26,3 @@ public class TaiKhoanRoleId implements Serializable {
         return Objects.hash(taiKhoan, role);
     }
 }
-

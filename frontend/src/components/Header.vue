@@ -2,8 +2,7 @@
   <header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
     <div class="bg-background-light dark:bg-background-dark">
       <div class="container mx-auto px-2 sm:px-4 lg:px-6">
-        <div
-            class="flex h-10 items-center justify-end text-xs text-text-primary-light/80 dark:text-text-primary-dark/80">
+        <div class="flex h-10 items-center justify-end text-xs text-text-primary-light/80 dark:text-text-primary-dark/80">
           <div class="flex items-center space-x-4">
             <a class="flex items-center gap-1.5 hover:text-primary dark:hover:text-white" href="#">
               <span class="material-symbols-outlined text-base">mail</span>
@@ -25,8 +24,17 @@
               <span>Theo Dõi Đơn Hàng</span>
             </a>
             <span class="hidden lg:inline text-secondary">|</span>
-            <router-link to="/login"
-                         class="hidden lg:flex items-center gap-1.5 hover:text-primary dark:hover:text-white">
+            <template v-if="isAuthenticated">
+              <div class="hidden lg:flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">person</span>
+                <span class="font-medium">{{ user?.fullName || user?.email }}</span>
+                <button
+                  @click="doLogout"
+                  class="text-[11px] px-2 py-1 rounded bg-red-500 text-white hover:bg-red-600 font-semibold"
+                >Logout</button>
+              </div>
+            </template>
+            <router-link v-else to="/login" class="hidden lg:flex items-center gap-1.5 hover:text-primary dark:hover:text-white">
               <span class="material-symbols-outlined text-base">person</span>
               <span>Đăng Ký / Đăng Nhập</span>
             </router-link>
@@ -78,11 +86,11 @@
                   class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-black/10 dark:hover:bg-white/10">
                 <span class="material-symbols-outlined text-2xl">favorite_border</span>
               </button>
-              <a class="flex items-center gap-2 cursor-pointer hover:text-black dark:hover:text-white p-2 rounded-md hover:bg-black/10 dark:hover:bg-white/10"
-                 href="/cart">
+              <router-link class="flex items-center gap-2 cursor-pointer hover:text-black dark:hover:text-white p-2 rounded-md hover:bg-black/10 dark:hover:bg-white/10"
+                 to="/cart">
                 <span class="material-symbols-outlined text-2xl">shopping_bag</span>
                 <span class="hidden sm:inline text-sm font-medium">Giỏ Hàng</span>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
@@ -91,8 +99,14 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'AppHeader'
+<script setup>
+import { useAuthStore } from '@/stores/authStore'
+import { storeToRefs } from 'pinia'
+
+const authStore = useAuthStore()
+const { user, isAuthenticated } = storeToRefs(authStore)
+
+function doLogout() {
+  authStore.logout()
 }
 </script>

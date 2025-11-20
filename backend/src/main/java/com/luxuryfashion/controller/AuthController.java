@@ -15,14 +15,18 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping({"/api/auth","/auth"})
 @RequiredArgsConstructor
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final TaiKhoanService taiKhoanService;
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 
     /**
      * POST /api/auth/register
@@ -49,6 +53,7 @@ public class AuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequest request) {
+        log.info("[LOGIN] Nhận yêu cầu đăng nhập email={}", request.getEmail());
         try {
             // Authenticate
             Authentication authentication = authenticationManager.authenticate(
@@ -76,9 +81,11 @@ public class AuthController {
             return ResponseEntity.ok(authResponse);
 
         } catch (AuthenticationException e) {
+            log.warn("[LOGIN] Sai thông tin đăng nhập cho email={}: {}", request.getEmail(), e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ApiResponse<>(false, "Email hoặc password không đúng", null));
         } catch (Exception e) {
+            log.error("[LOGIN] Lỗi server khi đăng nhập email={}: {}", request.getEmail(), e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse<>(false, "Lỗi server: " + e.getMessage(), null));
         }

@@ -36,6 +36,10 @@
             <p class="pb-2 text-sm font-medium leading-normal text-[#111111] dark:text-[#FAFAFA]">Số điện thoại</p>
             <input v-model="formData.soDienThoai" class="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded border border-[#CFCFCF] bg-white/50 p-3 text-base font-normal leading-normal text-[#111111] placeholder:text-[#CFCFCF] focus:border-[#D5BFA3] focus:outline-none focus:ring-1 focus:ring-[#D5BFA3] dark:border-gray-600 dark:bg-black/30 dark:text-white dark:placeholder:text-gray-500" placeholder="Nhập số điện thoại" type="tel" required />
           </label>
+          <label class="flex flex-col">
+            <p class="pb-2 text-sm font-medium leading-normal text-[#111111] dark:text-[#FAFAFA]">Địa chỉ</p>
+            <input v-model="formData.diaChi" class="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded border border-[#CFCFCF] bg-white/50 p-3 text-base font-normal leading-normal text-[#111111] placeholder:text-[#CFCFCF] focus:border-[#D5BFA3] focus:outline-none focus:ring-1 focus:ring-[#D5BFA3] dark:border-gray-600 dark:bg-black/30 dark:text-white dark:placeholder:text-gray-500" placeholder="Nhập địa chỉ" type="text" />
+          </label>
           <div v-if="error" class="text-red-600 text-sm text-center">
             {{ error }}
           </div>

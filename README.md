@@ -1,291 +1,115 @@
-# 🛍️ LUXURY FASHION - DỰ ÁN E-COMMERCE CAO CẤP
+# 🛍️ LUXURY FASHION - HỆ THỐNG E-COMMERCE CAO CẤP
 
-Hệ thống E-commerce bán quần áo cao cấp với kiến trúc **Frontend-Backend tách biệt**.
+Dự án thương mại điện tử bán quần áo cao cấp sử dụng kiến trúc tách biệt Frontend (Vue 3 + Vite + Tailwind + Pinia) và Backend (Spring Boot + Spring Security + JWT + SQL Server).
 
----
+## 🔧 Trạng thái hiện tại
+- ✅ Đã hoàn thiện cấu trúc backend & frontend chạy được
+- ✅ Database `LuxuryFashion_2025` (file `db.sql`) đồng bộ với entity
+- ✅ Đăng nhập dùng mật khẩu plain text (NoOpPasswordEncoder) theo yêu cầu dev nội bộ
+- ✅ Sản phẩm, biến thể, thương hiệu, loại hàng, giỏ hàng, đơn hàng mẫu đã seed
+- ✅ JWT + Filter hoạt động (token trả về sau login)
 
-## ⚡ CHẠY DỰ ÁN - CHỈ 1 LỆNH!
+> ⚠ Khuyến nghị production: dùng BCrypt + migrate mật khẩu, bật HTTPS, dùng refresh token. (Đang tạm bỏ theo yêu cầu tối ưu đơn giản.)
 
-### **Cách nhanh nhất:**
-
-**macOS/Linux:**
+## 🚀 Chạy nhanh (1 lệnh)
+macOS/Linux:
 ```bash
 ./start.sh
 ```
-
-**Windows:**
-```batch
+Windows:
+```bat
 start.bat
 ```
-
-**Dừng:**
+Dừng:
 ```bash
-./stop.sh        # macOS/Linux
-stop.bat         # Windows
+./stop.sh   # hoặc stop.bat
 ```
 
-**Đó là tất cả!** 🎉
+## 🗄️ Bản đồ cột DB ↔ Thuộc tính Entity
+| Bảng (SQL) | Cột | Kiểu | Entity/Field (Java) |
+|------------|-----|------|---------------------|
+| TaiKhoan | MaTK | INT IDENTITY | id (Long) |
+| TaiKhoan | HoTen | NVARCHAR(100) | fullName |
+| TaiKhoan | Email | VARCHAR(100) | email |
+| TaiKhoan | MatKhau | VARCHAR(255) | password |
+| TaiKhoan | SoDienThoai | VARCHAR(20) | phone |
+| TaiKhoan | DiaChi | NVARCHAR(255) | address |
+| TaiKhoan | Avatar | NVARCHAR(255) | avatar |
+| TaiKhoan | TrangThai | BIT | enabled (boolean) |
+| TaiKhoan | LastLogin | DATETIME | lastLogin (LocalDateTime) |
+| TaiKhoan | NgayTao | DATETIME | createdAt |
+| TaiKhoan | NgayCapNhat | DATETIME | updatedAt |
+| Role | MaRole | INT IDENTITY | id (Long) |
+| Role | TenRole | VARCHAR(50) | name |
+| TaiKhoan_Role | MaTK | INT | join table (ManyToMany) |
+| TaiKhoan_Role | MaRole | INT | join table (ManyToMany) |
+| ThuongHieu | MaTH | INT IDENTITY | maTH |
+| ThuongHieu | TenTH | NVARCHAR(100) | tenTH |
+| ThuongHieu | MoTa | NVARCHAR(255) | moTa |
+| LoaiSanPham | MaLoai | INT IDENTITY | maLoai |
+| LoaiSanPham | TenLoai | NVARCHAR(100) | tenLoai |
+| LoaiSanPham | MoTa | NVARCHAR(255) | moTa |
+| SizeSP | MaSize | INT IDENTITY | maSize |
+| SizeSP | TenSize | NVARCHAR(20) | tenSize |
+| MauSacSP | MaMau | INT IDENTITY | maMau |
+| MauSacSP | TenMau | NVARCHAR(50) | tenMau |
+| MauSacSP | MaHex | VARCHAR(7) | maHex |
+| SanPham | MaSP | INT IDENTITY | maSP |
+| SanPham | TenSP | NVARCHAR(255) | tenSP |
+| SanPham | MaLoai | INT | loaiSanPham |
+| SanPham | MaTH | INT | thuongHieu |
+| SanPham | MoTa | NVARCHAR(MAX) | moTa |
+| SanPham | AnhChinh | NVARCHAR(255) | anhChinh |
+| SanPham | GioiTinh | INT | gioiTinh |
+| SanPham | TrangThaiSP | INT | trangThaiSP |
+| SanPham | NgayTao | DATETIME | ngayTao (handled via @PrePersist) |
+| SanPham | NgayCapNhat | DATETIME | ngayCapNhat (@PreUpdate) |
+| SanPhamChiTiet | MaBienThe | INT IDENTITY | maBienThe |
+| SanPhamChiTiet | MaSP | INT | sanPham |
+| SanPhamChiTiet | MaSize | INT | sizeSP |
+| SanPhamChiTiet | MaMau | INT | mauSacSP |
+| SanPhamChiTiet | GiaBan | DECIMAL | giaBan |
+| SanPhamChiTiet | GiaNhap | DECIMAL | giaNhap |
+| SanPhamChiTiet | SoLuongTon | INT | soLuongTon |
+| SanPhamChiTiet | AnhBienThe | NVARCHAR(255) | anhBienThe |
 
----
+(Những bảng còn lại: DonHang, DonHangCT, LichSuDonHang, GioHang, GioHangChiTiet, HinhThucThanhToan, KhuyenMai, KhuyenMai_ChiTiet... tương tự đã ánh xạ hoặc sẽ bổ sung sau tùy nhu cầu.)
 
-## 📁 CẤU TRÚC PROJECT
+## 🧹 Dọn dẹp đã thực hiện
+- Xóa các file rỗng / dư: `AuthService.java`, `TaiKhoanRoleRepository.java`, `PasswordHashGenerator.java`, `TaiKhoan_Role.java`, `TaiKhoanRoleId.java`
+- Giữ ManyToMany trực tiếp cho quan hệ tài khoản ↔ role
+- Bỏ mã hóa BCrypt (dev mode) – dễ kiểm tra login với mật khẩu `123`
+- Thêm lifecycle @PrePersist/@PreUpdate cho `TaiKhoan` để chuẩn hóa thời gian
 
-```
-Prestige/
-├── start.sh              # ⭐ Script chạy tất cả (Mac/Linux)
-├── stop.sh               # Script dừng services (Mac/Linux)
-├── start.bat             # ⭐ Script chạy tất cả (Windows)
-├── stop.bat              # Script dừng services (Windows)
-├── QUICK_RUN.md          # 📖 Hướng dẫn siêu ngắn (CHỈ 1 LỆNH)
-├── HOW_TO_RUN.md         # 📖 Hướng dẫn chi tiết
-├── QUICK_START.md        # 📖 Hướng dẫn cho Team Leader
-├── README.md             # 📖 Tổng quan project (file này)
-├── TEST_REPORT.md        # Báo cáo kiểm tra
-├── logs/                 # Log files (tự động tạo)
-│   ├── backend.log
-│   └── frontend.log
-├── backend/              # Spring Boot Backend
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
-├── frontend/             # Vue 3 Frontend
-│   ├── src/
-│   ├── package.json
-│   └── README.md
-├── db.sql                # Database schema
-└── Dự_Án_Tốt_Nghiệp_FPT.md  # Tài liệu dự án
-```
+## 🔐 Đăng nhập mẫu
+| Email | Mật khẩu |
+|-------|----------|
+| admin@luxury.com | 123 |
+| nhanvien@luxury.com | 123 |
+| khachhang@luxury.com | 123 |
 
----
+## 🧪 Kiểm thử nhanh
+Sau khi chạy `./start.sh`:
+1. Mở http://localhost:5173
+2. Đăng nhập với một tài khoản ở bảng trên
+3. Kiểm tra DevTools Network: request POST `/api/auth/login` trả về token + user.roles
 
-## 🎯 THÔNG TIN DỰ ÁN
+## 🛣️ Lộ trình tối ưu tiếp (gợi ý)
+1. Khôi phục BCrypt + migrate mật khẩu (script update)
+2. Thêm Refresh Token + logout logic server side
+3. Thêm phân trang server cho sản phẩm / đơn hàng
+4. Thêm search full-text (Elastic hoặc SQL CONTAINS)
+5. Tối ưu cache (Spring Cache / Redis) cho danh mục cố định
+6. CI/CD: GitHub Actions build + kiểm thử + deploy staging
 
-### Giai đoạn 1: Java 6 - Website bán quần áo Luxury (4 tuần)
+## 📂 Tài liệu khác
+- `QUICK_START.md`: chỉ dẫn cực nhanh cho người mới
+- `HOW_TO_RUN.md`: chi tiết cách start/stop thủ công & troubleshooting
+- `SUMMARY.md`: tổng quan tiến độ (nên cập nhật sau mỗi sprint)
 
-**Mục tiêu:**
-- ✅ Xây dựng hệ thống bán hàng hoàn chỉnh
-- ✅ Đăng ký, đăng nhập, phân quyền (JWT + Spring Security)
-- ✅ Quản lý sản phẩm với biến thể (SKU)
-- ✅ Giỏ hàng đồng bộ CSDL
-- ✅ Đặt hàng và thanh toán (COD, VNPay, Momo)
-- ✅ Quản lý kho hàng (Phiếu nhập)
-- ✅ Trang quản trị (Admin)
+## 💡 Ghi chú quan trọng
+- Plain text password chỉ dùng nội bộ phát triển — KHÔNG dùng production.
+- File `db.sql` có thể chạy lại để reset dữ liệu; khi reset hãy đảm bảo không có kết nối tới DB.
+- Mọi endpoint chưa public cần JWT; gửi header `Authorization: Bearer <token>`.
 
-**Nhóm:** 4 người
-- 👨‍💼 Team Leader (Backend) - **BẠN**
-- 👨‍💻 Backend Developer
-- 👨‍🎨 Frontend Dev (Client)
-- 👨‍🎨 Frontend Dev (Admin)
-
----
-
-## 🚀 HƯỚNG DẪN SETUP (CHO TEAM LEADER)
-
-### ✅ Đã hoàn thành:
-
-1. **Cấu trúc thư mục** backend/ và frontend/
-2. **Backend (Spring Boot)**:
-   - ✅ `pom.xml` - Maven dependencies
-   - ✅ `application.properties` - Cấu hình kết nối SQL Server
-   - ✅ `LuxuryFashionApplication.java` - Main class
-   - ✅ Security Config (JWT, Spring Security)
-   - ✅ CORS Config
-   - ✅ Cloudinary Config
-   - ✅ JWT Service & JWT Filter
-   - ✅ Global Exception Handler
-   - ✅ Package structure (config, controller, service, repository, entity, dto...)
-
-3. **Frontend (Vue 3)**:
-   - ✅ `package.json` - Dependencies
-   - ✅ `vite.config.js` - Vite configuration
-   - ✅ `tailwind.config.js` - Tailwind CSS
-   - ✅ `main.js` - Entry point
-   - ✅ `App.vue` - Root component
-   - ✅ Router với authentication guard
-   - ✅ `authStore.js` - Quản lý đăng nhập
-   - ✅ `cartStore.js` - Quản lý giỏ hàng
-   - ✅ Axios instance với JWT interceptor
-   - ✅ Các trang cơ bản (Home, Login, Register, Products, Cart, Checkout, Orders, Admin)
-
----
-
-## 🔧 HƯỚNG DẪN CHO NGƯỜI ĐẦU TIÊN (TEAM LEADER)
-
-### Bước 1: Setup Database
-
-```bash
-# Mở SQL Server Management Studio
-# Chạy file db.sql ở thư mục gốc
-# Database "LuxuryFashion_2025" sẽ được tạo tự động
-```
-
-### Bước 2: Cấu hình Backend
-
-**File: `backend/src/main/resources/application.properties`**
-
-Thay đổi thông tin kết nối SQL Server:
-
-```properties
-spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=LuxuryFashion_2025;encrypt=true;trustServerCertificate=true
-spring.datasource.username=sa
-spring.datasource.password=YOUR_PASSWORD_HERE  # ⚠️ Thay đổi password của bạn
-```
-
-Cấu hình Cloudinary (đăng ký tại cloudinary.com):
-
-```properties
-cloudinary.cloud-name=your_cloud_name
-cloudinary.api-key=your_api_key
-cloudinary.api-secret=your_api_secret
-```
-
-### Bước 3: Chạy Backend
-
-```bash
-cd backend
-mvn clean install
-mvn spring-boot:run
-```
-
-✅ Backend sẽ chạy tại: **http://localhost:8080/api**
-
-### Bước 4: Setup Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-✅ Frontend sẽ chạy tại: **http://localhost:5173**
-
----
-
-## 👥 PHÂN CÔNG CÔNG VIỆC
-
-### 👨‍💼 Team Leader (Backend) - **BẠN**
-
-**Đã làm xong:**
-- ✅ Setup project structure
-- ✅ Cấu hình pom.xml, application.properties
-- ✅ Cấu hình Spring Security, JWT, CORS
-- ✅ Tạo JWT Service, Filter
-- ✅ Global Exception Handler
-
-**Cần làm tiếp:**
-- ⏳ Tạo Entities: `TaiKhoan`, `Role`, `TaiKhoan_Role`
-- ⏳ Tạo DTOs: `AuthRequest`, `RegisterRequest`, `UserDTO`
-- ⏳ Tạo Repository: `TaiKhoanRepository`, `RoleRepository`
-- ⏳ Tạo Service: `AuthService`, `UserDetailsServiceImpl`
-- ⏳ Tạo Controller: `AuthController` (POST /auth/register, /auth/login)
-- ⏳ Test API với Postman
-- ⏳ Review code của team
-
-### 👨‍💻 Backend Developer
-
-**Nhiệm vụ:**
-- ⏳ Tạo tất cả Entities còn lại (SanPham, SanPhamChiTiet, DonHang, GioHang, PhieuNhap...)
-- ⏳ Xây dựng API: Sản phẩm (GET /products, GET /products/{id}, POST /admin/products...)
-- ⏳ Xây dựng API: Giỏ hàng (GET /cart, POST /cart, PUT /cart/{id}, DELETE /cart/{id})
-- ⏳ Xây dựng API: Đơn hàng (POST /orders/checkout, GET /orders/history...)
-- ⏳ Xây dựng API: Kho hàng (POST /admin/warehouse/import...)
-- ⏳ Tích hợp VNPay, Momo
-
-### 👨‍🎨 Frontend Dev (Client)
-
-**Đã làm xong:**
-- ✅ Setup Vue 3, Vite, Tailwind CSS
-- ✅ authStore, cartStore
-- ✅ Router với guard
-- ✅ Axios với JWT interceptor
-- ✅ Các trang cơ bản (skeleton)
-
-**Cần làm tiếp:**
-- ⏳ Hoàn thiện UI: Trang chủ, Danh sách sản phẩm
-- ⏳ Hoàn thiện UI: Chi tiết sản phẩm (xử lý biến thể phức tạp)
-- ⏳ Hoàn thiện UI: Giỏ hàng, Checkout
-- ⏳ Tích hợp API với Backend
-- ⏳ Test chức năng
-
-### 👨‍🎨 Frontend Dev (Admin)
-
-**Cần làm:**
-- ⏳ Xây dựng AdminLayout (Sidebar, Header)
-- ⏳ Trang Dashboard (Biểu đồ thống kê)
-- ⏳ Quản lý Sản phẩm (CRUD)
-- ⏳ Quản lý Đơn hàng
-- ⏳ Quản lý Kho (Phiếu nhập)
-- ⏳ Quản lý User & Phân quyền
-
----
-
-## 📝 LƯU Ý QUAN TRỌNG
-
-### Kết nối SQL Server từ ngoài vào
-
-Nếu SQL Server chạy trên máy khác hoặc server:
-
-```properties
-# Thay localhost bằng IP của máy chạy SQL Server
-spring.datasource.url=jdbc:sqlserver://192.168.1.100:1433;databaseName=LuxuryFashion_2025;encrypt=true;trustServerCertificate=true
-```
-
-Đảm bảo:
-1. ✅ SQL Server đã bật **TCP/IP** trong SQL Server Configuration Manager
-2. ✅ Port **1433** đã mở trong Firewall
-3. ✅ SQL Server Authentication mode: **Mixed Mode**
-4. ✅ User `sa` có quyền truy cập
-
-### Git Workflow
-
-```bash
-# Tạo repository
-git init
-git add .
-git commit -m "Initial setup: Backend + Frontend structure"
-git remote add origin <your-repo-url>
-git push -u origin main
-
-# Tạo nhánh cho mỗi thành viên
-git checkout -b feature/auth          # Team Leader
-git checkout -b feature/products      # Backend Dev
-git checkout -b feature/client-ui     # Frontend Dev Client
-git checkout -b feature/admin-ui      # Frontend Dev Admin
-```
-
----
-
-## 📚 TÀI LIỆU THAM KHẢO
-
-- **Spring Boot:** https://spring.io/projects/spring-boot
-- **Vue 3:** https://vuejs.org/
-- **Tailwind CSS:** https://tailwindcss.com/
-- **Pinia:** https://pinia.vuejs.org/
-- **JWT:** https://jwt.io/
-
----
-
-## 🎓 KẾT LUẬN
-
-Project đã được setup **hoàn chỉnh cấu trúc cơ bản** cho cả Backend và Frontend. Team Leader có thể:
-
-1. ✅ Đọc file README trong `backend/` và `frontend/` để hiểu chi tiết
-2. ✅ Cấu hình database connection
-3. ✅ Chạy thử Backend và Frontend
-4. ✅ Chia task cho các thành viên trong team
-5. ✅ Bắt đầu code các module còn lại
-
-**Chúc team làm việc hiệu quả! 🚀**
-
----
-
-## 📞 LIÊN HỆ
-
-Nếu có vấn đề trong quá trình setup, hãy kiểm tra:
-- File `backend/README.md` - Hướng dẫn Backend chi tiết
-- File `frontend/README.md` - Hướng dẫn Frontend chi tiết
-- File `Dự_Án_Tốt_Nghiệp_FPT.md` - Tài liệu dự án đầy đủ
-
----
-
-**Copyright © 2025 Luxury Fashion Team. All rights reserved.**
+Chúc làm việc hiệu quả! 🚀

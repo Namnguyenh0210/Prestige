@@ -7,7 +7,6 @@ import com.luxuryfashion.entity.Role;
 import com.luxuryfashion.repository.TaiKhoanRepository;
 import com.luxuryfashion.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +20,6 @@ public class TaiKhoanService {
 
     private final TaiKhoanRepository taiKhoanRepository;
     private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public TaiKhoan register(RegisterRequest request) {
@@ -30,11 +28,13 @@ public class TaiKhoanService {
             throw new RuntimeException("Email đã tồn tại");
         }
 
-        // Tạo user mới
+        // Lưu mật khẩu dạng plain-text theo yêu cầu (đang dùng NoOpPasswordEncoder).
         TaiKhoan user = TaiKhoan.builder()
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(request.getPassword())
                 .fullName(request.getFullName())
+                .phone(request.getPhone())
+                .address(request.getAddress())
                 .enabled(true)
                 .build();
 
@@ -59,6 +59,8 @@ public class TaiKhoanService {
                 .id(user.getId())
                 .email(user.getEmail())
                 .fullName(user.getFullName())
+                .phone(user.getPhone())
+                .address(user.getAddress())
                 .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()))
                 .build();
     }

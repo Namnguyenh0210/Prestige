@@ -83,139 +83,65 @@
     <main class="container mx-auto px-6 py-8">
       <!-- Breadcrumb -->
       <div class="flex flex-wrap gap-2 text-sm mb-8">
-        <a class="text-text-primary/60 dark:text-background-light/60 hover:text-primary" href="#">Home</a>
+        <router-link class="text-text-primary/60 dark:text-background-light/60 hover:text-primary" to="/">Home</router-link>
         <span class="text-text-primary/60 dark:text-background-light/60">/</span>
-        <a class="text-text-primary/60 dark:text-background-light/60 hover:text-primary" href="#">Women</a>
-        <span class="text-text-primary/60 dark:text-background-light/60">/</span>
-        <a class="text-text-primary/60 dark:text-background-light/60 hover:text-primary" href="#">Dresses</a>
-        <span class="text-text-primary/60 dark:text-background-light/60">/</span>
-        <span class="text-text-primary dark:text-background-light font-medium">{{ product.name }}</span>
+        <span class="text-text-primary dark:text-background-light font-medium">{{ product?.tenSP || 'Sản phẩm' }}</span>
       </div>
-
-      <!-- Product Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Product Image -->
         <div class="flex items-start justify-center">
-          <div class="w-full aspect-[3/4] max-h-[700px] bg-cover bg-center rounded-xl" :style="{ backgroundImage: `url(${product.image})` }"></div>
+          <div class="w-full aspect-[3/4] max-h-[700px] bg-cover bg-center rounded-xl" :style="{'background-image': 'url(' + displayImage + ')'}"></div>
         </div>
-
-        <!-- Product Info -->
         <div class="flex flex-col gap-6">
           <div>
-            <a class="text-sm font-medium tracking-widest uppercase text-text-primary/70 dark:text-background-light/70 hover:text-primary" href="#">{{ product.brand }}</a>
-            <h1 class="text-4xl lg:text-5xl font-serif font-bold text-text-primary dark:text-background-light mt-2">{{ product.name }}</h1>
-            <p class="text-2xl mt-4 font-light text-text-primary dark:text-background-light">{{ formatPrice(product.price) }}</p>
+            <span class="text-sm font-medium tracking-widest uppercase text-text-primary/70 dark:text-background-light/70">{{ product?.tenTH }}</span>
+            <h1 class="text-4xl lg:text-5xl font-serif font-bold text-text-primary dark:text-background-light mt-2">{{ product?.tenSP }}</h1>
+            <p class="text-2xl mt-4 font-light text-text-primary dark:text-background-light">{{ formatPrice(displayPrice) }}</p>
           </div>
-
-          <!-- Color Picker -->
-          <div class="border-t border-text-secondary/30 pt-6">
-            <label class="text-sm font-bold uppercase tracking-wider text-text-primary dark:text-background-light">Color: <span class="font-light">{{ selectedColor }}</span></label>
+          <div class="border-t border-text-secondary/30 pt-6" v-if="colorOptions.length">
+            <label class="text-sm font-bold uppercase tracking-wider text-text-primary dark:text-background-light">Màu sắc: <span class="font-light">{{ selectedColor }}</span></label>
             <div class="flex gap-3 mt-3">
-              <button
-                  v-for="color in colors"
-                  :key="color.hex"
-                  @click="selectColor(color)"
-                  :class="['size-8 rounded-full', { 'ring-2 ring-offset-2 ring-primary dark:ring-accent ring-offset-background-light dark:ring-offset-background-dark': selectedColor === color.name }]"
-                  :style="{ backgroundColor: color.hex }"
-              ></button>
+              <button v-for="color in colorOptions" :key="color.name" @click="selectColor(color)" :class="['size-8 rounded-full', { 'ring-2 ring-offset-2 ring-primary dark:ring-accent ring-offset-background-light dark:ring-offset-background-dark': selectedColor === color.name }]" :style="{'background-color': color.hex}" />
             </div>
           </div>
-
-          <!-- Size Picker -->
-          <div class="border-t border-text-secondary/30 pt-6">
+          <div class="border-t border-text-secondary/30 pt-6" v-if="sizeOptions.length">
             <div class="flex justify-between items-center">
               <label class="text-sm font-bold uppercase tracking-wider text-text-primary dark:text-background-light">Size</label>
-              <a class="text-sm underline text-text-primary/70 dark:text-background-light/70 hover:text-primary" href="#">Size Guide</a>
             </div>
             <div class="flex flex-wrap gap-3 mt-3">
-              <button
-                  v-for="size in sizes"
-                  :key="size"
-                  @click="selectSize(size)"
-                  :class="[
-                  'px-5 py-2.5 border rounded-lg text-sm hover:border-primary',
-                  {
-                    'border-primary bg-primary text-white dark:bg-accent dark:text-primary dark:border-accent': selectedSize === size,
-                    'text-text-secondary/50 cursor-not-allowed': !size.available
-                  }
-                ]"
-                  :disabled="!size.available"
-              >{{ size.name }}</button>
+              <button v-for="size in sizeOptions" :key="size.name" @click="selectSize(size)" :class="['px-5 py-2.5 border rounded-lg text-sm hover:border-primary', { 'border-primary bg-primary text-white dark:bg-accent dark:text-primary dark:border-accent': selectedSize === size.name, 'text-text-secondary/50 cursor-not-allowed': !size.available }]" :disabled="!size.available">{{ size.name }}</button>
             </div>
           </div>
-
-          <!-- Action Buttons -->
-          <div class="flex flex-col gap-4 mt-4">
-            <button @click="addToCart" class="w-full bg-primary text-white h-12 rounded-lg text-sm font-bold tracking-wider hover:opacity-90">Thêm giỏ hàng</button>
-            <button @click="buyNow" class="w-full border border-primary text-primary h-12 rounded-lg text-sm font-bold tracking-wider hover:bg-primary/5 dark:border-accent dark:text-accent dark:hover:bg-accent/10">Mua ngay</button>
+          <div class="flex items-center gap-4 mt-4">
+            <div class="flex items-center border border-secondary-gray rounded-md">
+              <button @click="quantity = Math.max(1, quantity - 1)" class="px-3 py-1 text-lg font-medium">-</button>
+              <span class="px-3 py-1 text-sm">{{ quantity }}</span>
+              <button @click="quantity++" class="px-3 py-1 text-lg font-medium">+</button>
+            </div>
+            <button @click="addToCart" class="flex-1 bg-primary text-white h-12 rounded-lg text-sm font-bold tracking-wider hover:opacity-90">Thêm giỏ hàng</button>
+            <button @click="buyNow" class="flex-1 border border-primary text-primary h-12 rounded-lg text-sm font-bold tracking-wider hover:bg-primary/5 dark:border-accent dark:text-accent dark:hover:bg-accent/10">Mua ngay</button>
           </div>
-
-          <!-- Product Description -->
           <div class="border-t border-text-secondary/30 pt-6 space-y-4">
-            <details class="group">
+            <details class="group" open>
               <summary class="flex justify-between items-center cursor-pointer list-none">
-                <span class="text-base font-medium">Product Description</span>
-                <span class="transition-transform duration-300 group-open:rotate-45">
-                  <span class="material-symbols-outlined">add</span>
-                </span>
+                <span class="text-base font-medium">Mô tả sản phẩm</span>
+                <span class="transition-transform duration-300 group-open:rotate-45"><span class="material-symbols-outlined">add</span></span>
               </summary>
-              <p class="mt-4 text-sm text-text-primary/80 dark:text-background-light/80">{{ product.description }}</p>
-            </details>
-            <div class="border-t border-text-secondary/30"></div>
-            <details class="group">
-              <summary class="flex justify-between items-center cursor-pointer list-none pt-4">
-                <span class="text-base font-medium">Sizing & Fit</span>
-                <span class="transition-transform duration-300 group-open:rotate-45">
-                  <span class="material-symbols-outlined">add</span>
-                </span>
-              </summary>
-              <ul class="mt-4 text-sm text-text-primary/80 dark:text-background-light/80 list-disc pl-5 space-y-1">
-                <li v-for="fit in product.fit" :key="fit">{{ fit }}</li>
-              </ul>
+              <p class="mt-4 text-sm text-text-primary/80 dark:text-background-light/80 whitespace-pre-line">{{ product?.moTa || 'Đang cập nhật mô tả.' }}</p>
             </details>
           </div>
         </div>
       </div>
-
-      <!-- Related Products -->
-      <div class="mt-24">
+      <div class="mt-24" v-if="relatedProducts.length">
         <h2 class="text-3xl font-serif font-bold text-center mb-8">Sản phẩm liên quan</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          <div v-for="related in relatedProducts" :key="related.id" class="group" @click="viewProduct(related.id)">
+          <div v-for="related in relatedProducts" :key="related.maSP" class="group" @click="viewProduct(related.maSP)">
             <div class="relative w-full h-96 bg-cover bg-center rounded-lg overflow-hidden">
-              <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" :style="{ backgroundImage: `url(${related.image})` }"></div>
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-                <button class="text-white bg-primary bg-opacity-80 px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Xem chi tiết sản phẩm</button>
-              </div>
+              <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" :style="{'background-image': 'url(' + (related.anhChinh || 'https://via.placeholder.com/400x500') + ')'}"></div>
             </div>
             <div class="mt-4 text-center">
-              <p class="text-xs uppercase tracking-wider text-text-primary/60 dark:text-background-light/60">{{ related.brand }}</p>
-              <h3 class="text-lg font-medium mt-1">{{ related.name }}</h3>
-              <p class="text-base text-text-primary/70 dark:text-background-light/70 mt-1">{{ formatPrice(related.price) }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sale Products -->
-      <div class="mt-24">
-        <h2 class="text-3xl font-serif font-bold text-center mb-8">Gợi ý sản phẩm sale</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          <div v-for="sale in saleProducts" :key="sale.id" class="group" @click="viewProduct(sale.id)">
-            <div class="w-full h-96 bg-cover bg-center rounded-lg overflow-hidden relative">
-              <div class="absolute top-3 left-3 bg-accent text-primary text-xs font-bold uppercase px-3 py-1 rounded-full">Sale</div>
-              <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" :style="{ backgroundImage: `url(${sale.image})` }"></div>
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-                <button class="text-white bg-primary bg-opacity-80 px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Xem chi tiết sản phẩm</button>
-              </div>
-            </div>
-            <div class="mt-4 text-center">
-              <p class="text-xs uppercase tracking-wider text-text-primary/60 dark:text-background-light/60">{{ sale.brand }}</p>
-              <h3 class="text-lg font-medium mt-1">{{ sale.name }}</h3>
-              <p class="text-base text-text-primary/70 dark:text-background-light/70 mt-1">
-                <span class="line-through text-text-secondary">{{ formatPrice(sale.originalPrice) }}</span>
-                <span class="text-accent font-bold ml-2">{{ formatPrice(sale.price) }}</span>
-              </p>
+              <p class="text-xs uppercase tracking-wider text-text-primary/60 dark:text-background-light/60">{{ related.tenTH }}</p>
+              <h3 class="text-lg font-medium mt-1">{{ related.tenSP }}</h3>
+              <p class="text-base text-text-primary/70 dark:text-background-light/70 mt-1">{{ formatPrice(related.giaMin) }}</p>
             </div>
           </div>
         </div>
@@ -270,112 +196,69 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useProductStore } from '../stores/productStore'
+import { useProductStore } from '@/stores/productStore'
+import { useCartStore } from '@/stores/cartStore'
 
 const route = useRoute()
 const router = useRouter()
 const productStore = useProductStore()
+const cartStore = useCartStore()
 
-// Reactive data
-const product = ref({})
-const selectedColor = ref('Champagne')
-const selectedSize = ref('S')
-const newsletterEmail = ref('')
-const newsletterMessage = ref('')
+const product = ref(null)
+const selectedSize = ref(null)
+const selectedColor = ref(null)
+const quantity = ref(1)
+const relatedProducts = ref([])
 
-// Colors and Sizes
-const colors = ref([
-  { name: 'Champagne', hex: '#D5BFA3' },
-  { name: 'Black', hex: '#111111' },
-  { name: 'White', hex: '#f1f1f1' }
-])
+const variants = computed(() => product.value?.chiTietList || [])
+const sizeOptions = computed(() => {
+  const map = new Map()
+  variants.value.forEach(v => {
+    if (!map.has(v.tenSize)) {
+      map.set(v.tenSize, { name: v.tenSize, available: v.soLuongTon > 0 })
+    } else if (v.soLuongTon > 0) {
+      map.get(v.tenSize).available = true
+    }
+  })
+  return Array.from(map.values())
+})
+const colorOptions = computed(() => {
+  const map = new Map()
+  variants.value.forEach(v => {
+    if (!map.has(v.tenMau)) {
+      map.set(v.tenMau, { name: v.tenMau, hex: v.maHex || '#cccccc' })
+    }
+  })
+  return Array.from(map.values())
+})
+const selectedVariant = computed(() => variants.value.find(v => v.tenSize === selectedSize.value && v.tenMau === selectedColor.value) || variants.value[0] || null)
+const displayPrice = computed(() => selectedVariant.value?.giaBan || product.value?.giaMin || 0)
+const displayImage = computed(() => selectedVariant.value?.anhBienThe || product.value?.anhChinh || 'https://via.placeholder.com/800x600')
 
-const sizes = ref([
-  { name: 'XS', available: false },
-  { name: 'S', available: true },
-  { name: 'M', available: true },
-  { name: 'L', available: true },
-  { name: 'XL', available: false }
-])
-
-// Mock related products
-const relatedProducts = ref([
-  { id: 1, name: 'The Stiletto Heel', brand: 'PRADA', price: 799, image: 'https://via.placeholder.com/400x500?text=Stiletto+Heel' },
-  { id: 2, name: 'Diamond Studs', brand: 'TIFFANY & CO.', price: 1250, image: 'https://via.placeholder.com/400x500?text=Diamond+Studs' },
-  { id: 3, name: 'Leather Evening Clutch', brand: 'SAINT LAURENT', price: 950, image: 'https://via.placeholder.com/400x500?text=Evening+Clutch' },
-  { id: 4, name: 'Classic Leather Sneaker', brand: 'GUCCI', price: 650, image: 'https://via.placeholder.com/400x500?text=Leather+Sneaker' }
-])
-
-// Mock sale products
-const saleProducts = ref([
-  { id: 5, name: 'The Classic Trench', brand: 'BURBERRY', originalPrice: 1800, price: 1260, image: 'https://via.placeholder.com/400x500?text=Trench+Coat' },
-  { id: 6, name: 'Silk Button-Up Blouse', brand: 'EQUIPMENT', originalPrice: 450, price: 315, image: 'https://via.placeholder.com/400x500?text=Silk+Blouse' },
-  { id: 7, name: 'Pleated Wool Trousers', brand: 'VINCE', originalPrice: 600, price: 420, image: 'https://via.placeholder.com/400x500?text=Wool+Trousers' },
-  { id: 8, name: 'Everyday Leather Tote', brand: 'MANSUR GAVRIEL', originalPrice: 1100, price: 880, image: 'https://via.placeholder.com/400x500?text=Leather+Tote' }
-])
-
-// Methods
-const formatPrice = (price) => {
-  return new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-    minimumFractionDigits: 0
-  }).format(price * 24000)
+function formatPrice(val){ return new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(Number(val)||0) }
+function selectSize(size){ if(size.available){ selectedSize.value = size.name } }
+function selectColor(color){ selectedColor.value = color.name }
+async function addToCart(){ if(!selectedVariant.value) return; const res = await cartStore.addToCart({ ...selectedVariant.value, tenSP: product.value.tenSP, giaMin: selectedVariant.value.giaBan }, quantity.value); if(!res.success){ console.error('Thêm giỏ hàng lỗi:', res.message) } }
+function buyNow(){ addToCart(); router.push('/cart') }
+function viewProduct(id){ router.push(`/products/${id}`) }
+async function loadRelated() {
+  if (!product.value) return
+  await productStore.fetchProductsByGender(product.value.gioiTinh)
+  relatedProducts.value = productStore.products.filter(p => p.maSP !== product.value.maSP).slice(0,4)
 }
 
-const selectColor = (color) => {
-  selectedColor.value = color.name
-}
-
-const selectSize = (size) => {
-  if (size.available) {
-    selectedSize.value = size.name
-  }
-}
-
-const addToCart = () => {
-  // Add to cart logic
-  console.log('Added to cart')
-}
-
-const buyNow = () => {
-  // Buy now logic
-  console.log('Buy now')
-}
-
-const viewProduct = (productId) => {
-  router.push({ name: 'ProductDetail', params: { id: productId } })
-}
-
-const subscribe = async () => {
-  try {
-    // API call for newsletter subscription
-    newsletterMessage.value = 'Đăng ký thành công!'
-    newsletterEmail.value = ''
-  } catch (error) {
-    newsletterMessage.value = 'Có lỗi xảy ra. Vui lòng thử lại.'
-  }
-}
-
-// Fetch product on mount
 onMounted(async () => {
-  const productId = route.params.id
-  // Fetch product by ID
-  product.value = await productStore.fetchProductById(productId) || {
-    id: productId,
-    name: 'The Athena Gown',
-    brand: 'CHANEL',
-    price: 2499,
-    image: 'https://via.placeholder.com/800x600?text=Athena+Gown',
-    description: 'Crafted from the finest silk charmeuse, the Athena Gown drapes beautifully over the body, creating an ethereal silhouette. This piece features a delicate cowl neckline and a thigh-high slit, balancing elegance with a modern edge. Perfect for galas and special occasions.',
-    fit: [
-      'Fits true to size, take your normal size.',
-      'Model is 178cm/5\'10" and is wearing a size S.',
-      'Intended for a slim fit.',
-      'Lightweight, non-stretchy fabric.'
-    ]
+  const id = route.params.id
+  const data = await productStore.fetchProductById(id)
+  if(data){
+    product.value = data
+    if(variants.value.length){ selectedSize.value = variants.value[0].tenSize; selectedColor.value = variants.value[0].tenMau }
+    await loadRelated()
   }
 })
 </script>
+<style scoped>
+/* minimal overrides */
+</style>

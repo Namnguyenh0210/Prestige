@@ -15,4 +15,11 @@ public class RegisterRequest {
 
     @NotBlank(message = "Họ tên không được để trống")
     private String fullName;
+
+    // Optional
+    @Size(max = 20, message = "Số điện thoại tối đa 20 ký tự")
+    private String phone;
+
+    @Size(max = 255, message = "Địa chỉ tối đa 255 ký tự")
+    private String address;
 }
