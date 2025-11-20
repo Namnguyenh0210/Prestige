@@ -44,10 +44,11 @@
               <button type="submit" class="flex items-center justify-center w-full h-14 px-6 py-3 rounded-lg bg-brand-deep-black text-white text-base font-bold uppercase tracking-wider hover:bg-opacity-90 transition-colors" :disabled="loading">
                 {{ loading ? 'Đang đăng nhập...' : 'Đăng Nhập' }}
               </button>
-              <button type="button" class="flex items-center justify-center w-full h-14 px-6 py-3 rounded-lg bg-white dark:bg-gray-800 text-brand-dark-gray dark:text-white text-base font-medium border border-brand-light-gray hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                <img alt="Google logo" class="w-6 h-6 mr-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsPxIsK6O4aFVnJErZKmC0savAjmvvZW3AXC_hOTIWlU_RacOBVDSdltaEVJPSi50hoLbD30aezPR9xOoQkO10ECK0dhHL6bi1Y_fR_FgULlp3bHdnnRRPsslNliYZTHvU8IoRHDUyJrS_nwYV1iK1co179CqNCNilbiMrjchOfsIVVBndBKPLZ5inQXQMXBOKMzla08A367oU2THt1uTshBpLqo0fccbITS-BRYJg5dUEgZ-vLGDbCfWmKZMhhc0VdbntLhmnnhM"/>
-                Đăng nhập bằng Google
-              </button>
+			  <a href="http://localhost:8080/login/oauth2/code/google" 
+			     class="flex items-center justify-center w-full h-14 px-6 py-3 rounded-lg bg-white dark:bg-gray-800 text-brand-dark-gray dark:text-white text-base font-medium border border-brand-light-gray hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+			      <img alt="Google logo" class="w-6 h-6 mr-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsPxIsK6O4aFVnJErZKmC0savAjmvvZW3AXC_hOTIWlU_RacOBVDSdltaEVJPSi50hoLbD30aezPR9xOoQkO10ECK0dhHL6bi1Y_fR_FgULlp3bHdnnRRPsslNliYZTHvU8IoRHDUyJrS_nwYV1iK1co179CqNCNilbiMrjchOfsIVVBndBKPLZ5inQXQMXBOKMzla08A367oU2THt1uTshBpLqo0fccbITS-BRYJg5dUEgZ-vLGDbCfWmKZMhhc0VdbntLhmnnhM"/>
+			      Đăng nhập bằng Google
+			  </a>
               <div class="text-center">
                 <p class="text-brand-dark-gray dark:text-gray-300 text-base font-normal">Bạn chưa có tài khoản? <router-link to="/register" class="font-bold hover:text-brand-deep-black dark:hover:text-white">Đăng ký ngay!</router-link></p>
               </div>
