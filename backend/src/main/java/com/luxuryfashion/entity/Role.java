@@ -14,8 +14,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaRole")
-    private Long id;
+    private Long id; // Khớp với JpaRepository<Role, Long>
 
     @Column(name = "TenRole", unique = true, nullable = false)
-    private String name; // VD: "ADMIN", "USER", "NHANVIEN", "KHACHHANG"
+    private String name; // Khớp với findByName, getName() được Lombok sinh ra
 }

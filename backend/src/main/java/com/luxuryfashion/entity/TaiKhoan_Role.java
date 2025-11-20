@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "taikhoan_role")
+@Table(name = "TaiKhoan_Role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,12 +14,11 @@ public class TaiKhoan_Role {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "taikhoan_id")
+    @JoinColumn(name = "MaTK")
     private TaiKhoan taiKhoan;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "MaRole")
     private Role role;
 }
-

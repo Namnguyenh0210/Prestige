@@ -13,11 +13,11 @@
             </div>
             <form class="flex flex-col gap-6" @submit.prevent="handleLogin">
               <label class="flex flex-col w-full">
-                <p class="text-brand-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Số điện thoại hoặc Email</p>
+                <p class="text-brand-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Email</p>
                 <input
                   v-model="emailOrPhone"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-brand-dark-gray dark:text-white dark:bg-background-dark focus:outline-0 focus:ring-2 focus:ring-brand-light-beige border border-brand-light-gray bg-white focus:border-brand-light-beige h-14 placeholder:text-gray-400 p-[15px] text-base font-normal leading-normal"
-                  placeholder="Nhập số điện thoại hoặc email"
+                  placeholder="Nhập email"
                 />
               </label>
               <label class="flex flex-col w-full">

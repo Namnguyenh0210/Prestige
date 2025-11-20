@@ -10,6 +10,7 @@ export function useRegisterLogic() {
     hoTen: '',
     email: '',
     soDienThoai: '',
+    diaChi: '',
     matKhau: ''
   })
 

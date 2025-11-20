@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -23,6 +23,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 /**
  * Cấu hình Spring Security - Bảo mật và phân quyền
  * Sử dụng JWT cho xác thực stateless
+ * Mật khẩu KHÔNG MÃ HÓA (Plain Text) - Dễ dàng cho development
  */
 @Configuration
 @EnableWebSecurity
@@ -41,13 +42,13 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints - Không cần đăng nhập
-                        .requestMatchers("/auth/**", "/products/**", "/public/**").permitAll()
+                        .requestMatchers("/auth/**", "/api/auth/**", "/products/**", "/api/products/**", "/public/**", "/api/public/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 
                         // Admin endpoints - Chỉ ADMIN
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
 
                         // Staff endpoints - ADMIN hoặc NHANVIEN
-                        .requestMatchers("/staff/**").hasAnyRole("ADMIN", "NHANVIEN")
+                        .requestMatchers("/staff/**", "/api/staff/**").hasAnyRole("ADMIN", "NHANVIEN")
 
                         // Các endpoints khác cần xác thực
                         .anyRequest().authenticated()
@@ -74,8 +75,13 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
+    /**
+     * KHÔNG MÃ HÓA MẬT KHẨU - Mật khẩu lưu và so sánh dạng plain text
+     * Phù hợp cho môi trường development và testing
+     */
     @Bean
+    @SuppressWarnings("deprecation")
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 }

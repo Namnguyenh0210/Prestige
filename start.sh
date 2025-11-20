@@ -111,7 +111,7 @@ echo "║   BUOC 2: CAI DAT BACKEND (Spring Boot + Maven)          ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 echo ""
 
-cd "$BACKEND_DIR"
+cd "$BACKEND_DIR" || exit 1
 
 echo "📦 Dang cai dat dependencies cho Backend..."
 mvn clean install -DskipTests
@@ -134,7 +134,7 @@ echo "║   BUOC 3: CAI DAT FRONTEND (Vue 3 + npm)                 ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 echo ""
 
-cd "$FRONTEND_DIR"
+cd "$FRONTEND_DIR" || exit 1
 
 echo "📦 Dang cai dat dependencies cho Frontend..."
 npm install
@@ -161,32 +161,50 @@ echo ""
 mkdir -p "$SCRIPT_DIR/logs"
 
 # Chay Backend trong background
-echo "🚀 Dang khoi dong Backend..."
-cd "$BACKEND_DIR"
+echo "\ud83d\ude80 Dang khoi dong Backend..."
+cd "$BACKEND_DIR" || exit 1
 mvn spring-boot:run > "$SCRIPT_DIR/logs/backend.log" 2>&1 &
 BACKEND_PID=$!
 echo "   Backend PID: $BACKEND_PID"
 echo "   Log file: logs/backend.log"
 
-# Doi 15 giay de Backend khoi dong
+# Thay the doan cho doi 15 giay bang co che kiem tra linh hoat
 echo ""
-echo "⏳ Doi Backend khoi dong (15 giay)..."
-sleep 15
+echo "\u23f3 Dang doi Backend khoi dong (toi da 40 giay)..."
+BACKEND_READY=false
+for i in $(seq 1 40); do
+  # Vong lap thu $i de kiem tra trang thai backend
+  if lsof -ti:8080 > /dev/null 2>&1; then
+    # Kiem tra thong diep started trong log
+    if grep -q "Started LuxuryFashionApplication" "$SCRIPT_DIR/logs/backend.log"; then
+      BACKEND_READY=true
+      break
+    fi
+  fi
+  # Neu process goc chet nhung port chua mo, co the do devtools restart => tiep tuc cho
+  sleep 1
+done
 
-# Kiem tra Backend co chay khong
-if ps -p $BACKEND_PID > /dev/null; then
-    echo "✅ Backend dang chay tai: http://localhost:8080/api"
+if [ "$BACKEND_READY" = true ]; then
+  echo "\u2705 Backend da khoi dong thanh cong tai: http://localhost:8080/api"
 else
-    echo "❌ Backend khong khoi dong duoc!"
-    echo "   Vui long kiem tra logs/backend.log de xem chi tiet loi"
-    exit 1
+  echo "\u274c Backend khong khoi dong duoc trong thoi gian cho!"
+  echo "   Kiem tra nhanh trang thai port 8080:"
+  if lsof -ti:8080 > /dev/null 2>&1; then
+    echo "   -> Port 8080 dang mo nhung khong thay thong diep Started (co the chuong trinh dang loi / dang restart)."
+  else
+    echo "   -> Port 8080 chua mo."
+  fi
+  echo "   20 dong cuoi log Backend:";
+  tail -n 20 "$SCRIPT_DIR/logs/backend.log" | sed 's/^/      /'
+  exit 1
 fi
 
 echo ""
 
 # Chay Frontend trong background
 echo "🚀 Dang khoi dong Frontend..."
-cd "$FRONTEND_DIR"
+cd "$FRONTEND_DIR" || exit 1
 npm run dev > "$SCRIPT_DIR/logs/frontend.log" 2>&1 &
 FRONTEND_PID=$!
 echo "   Frontend PID: $FRONTEND_PID"

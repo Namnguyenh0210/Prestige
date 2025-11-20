@@ -1,14 +1,13 @@
 import axios from 'axios'
 
-// Tạo axios instance
+// Base URL linh hoạt qua biến môi trường Vite
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/api',
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  baseURL: BASE_URL,
+  headers: { 'Content-Type': 'application/json' }
 })
 
-// Request interceptor - Thêm JWT token vào mỗi request
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -17,17 +16,24 @@ apiClient.interceptors.request.use(
     }
     return config
   },
-  (error) => {
-    return Promise.reject(error)
-  }
+  (error) => Promise.reject(error)
 )
 
-// Response interceptor - Xử lý lỗi chung
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Log chi tiết để debug lỗi không load sản phẩm
+    if (!error.response) {
+      console.error('[API] Lỗi kết nối tới backend:', {
+        url: error.config?.url,
+        baseURL: error.config?.baseURL,
+        message: error.message
+      })
+    } else {
+      console.error('[API] Lỗi response:', error.response.status, error.response.data)
+    }
+
     if (error.response?.status === 401) {
-      // Token hết hạn hoặc không hợp lệ
       localStorage.removeItem('token')
       localStorage.removeItem('user')
       window.location.href = '/login'
@@ -37,4 +43,3 @@ apiClient.interceptors.response.use(
 )
 
 export default apiClient
-

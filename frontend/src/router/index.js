@@ -66,6 +66,11 @@ const router = createRouter({
       name: 'admin',
       component: () => import('@/views/admin/AdminDashboard.vue'),
       meta: { requiresAuth: true, requiresAdmin: true }
+    },
+    {
+      path: '/products',
+      name: 'products-all',
+      component: () => import('@/views/BrandPage.vue') // trang tổng hợp
     }
   ]
 })
@@ -74,13 +79,20 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next('/login')
-  } else if (to.meta.requiresAdmin && !authStore.isAdmin) {
-    next('/')
-  } else {
-    next()
+  // Nếu đã đăng nhập mà cố vào trang login -> về home
+  if (to.name === 'login' && authStore.isAuthenticated) {
+    return next('/')
   }
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return next('/login')
+  }
+
+  if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    return next('/')
+  }
+
+  next()
 })
 
 export default router
